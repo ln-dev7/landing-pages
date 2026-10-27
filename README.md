@@ -9,6 +9,8 @@ Built with Next.js, Tailwind CSS and fully customized shadcn/ui.
 
 | Preview | Project | Concept |
 | --- | --- | --- |
+| [![Hollow](www/showcase/hollow.jpg)](https://hollow-lndev.vercel.app) | **[Hollow](landing-pages/hollow)** · [Live](https://hollow-lndev.vercel.app) | A haunted-house journey through a continuous 3D world |
+| [![Sundaze](www/showcase/sundaze.jpg)](https://sundaze-lndev.vercel.app) | **[Sundaze](landing-pages/sundaze)** · [Live](https://sundaze-lndev.vercel.app) | A playful surf club with an interactive surf school |
 | [![Veillée](www/showcase/veillee.png)](https://veillee-lndev.vercel.app) | **[Veillée](landing-pages/veillee)** · [Live](https://veillee-lndev.vercel.app) | An immersive Werewolf game night |
 | [![Tempo](www/showcase/tempo.png)](https://tempo-lndev.vercel.app) | **[Tempo](landing-pages/tempo)** · [Live](https://tempo-lndev.vercel.app) | A sculptural chess journey with a complete grandmaster game |
 | [![Tessera](www/showcase/tessera.jpg)](https://tessera-lndev.vercel.app) | **[Tessera](landing-pages/tessera)** · [Live](https://tessera-lndev.vercel.app) | Eight-room architectural 3D promenade |
@@ -66,5 +68,5 @@ Created by **[LN](https://lndev.me)**.
 
 ## License
 
-Code is licensed under [MIT](LICENSE).
-Fonts and third-party images retain their own licenses; see each project's credits.
+Original project code is licensed under [MIT](LICENSE).
+Fonts, images and third-party components retain their own licenses; see each project's credits. Sundaze’s Canvas UI effects use MIT + Commons Clause.

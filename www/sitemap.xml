@@ -1,2 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"><url><loc>https://lp.lndev.me/</loc><lastmod>2026-10-14</lastmod><image:image><image:loc>https://lp.lndev.me/showcase/umbra.jpg</image:loc></image:image><image:image><image:loc>https://lp.lndev.me/showcase/aero.jpg</image:loc></image:image><image:image><image:loc>https://lp.lndev.me/showcase/fallow.jpg</image:loc></image:image><image:image><image:loc>https://lp.lndev.me/showcase/offcut.jpg</image:loc></image:image><image:image><image:loc>https://lp.lndev.me/showcase/crux.jpg</image:loc></image:image><image:image><image:loc>https://lp.lndev.me/showcase/maree.jpg</image:loc></image:image><image:image><image:loc>https://lp.lndev.me/showcase/passeline.jpg</image:loc></image:image><image:image><image:loc>https://lp.lndev.me/showcase/ficelle.jpg</image:loc></image:image><image:image><image:loc>https://lp.lndev.me/showcase/aparte.jpg?v=2</image:loc></image:image><image:image><image:loc>https://lp.lndev.me/showcase/ecrin.jpg</image:loc></image:image></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://lp.lndev.me/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <image:image><image:loc>https://lp.lndev.me/showcase/hollow.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/sundaze.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/veillee.png</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/tempo.png</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/tessera.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/oddpress.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/fallow.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/offcut.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/crux.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/maree.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/aero.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/passeline.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/ficelle.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/umbra.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/aparte.jpg?v=2</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/ecrin.jpg</image:loc></image:image>
+  </url>
+</urlset>

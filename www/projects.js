@@ -1,6 +1,39 @@
 /* Live previews follow https://[slug]-lndev.vercel.app. */
 window.PROJECTS = [
   {
+    slug: "hollow",
+    name: "Hollow",
+    category: "An immersive Halloween story",
+    direction: "A house with a memory",
+    group: "immersive",
+    description:
+      "Cross the threshold of a haunted house. Follow its doors, portraits and ghostly residents into a moonlit conservatory, then take an illustrated invitation home.",
+    short: "Some houses remember you.",
+    type: "DM Serif Display, IBM Plex Mono",
+    signature: "A continuous 3D haunted house with an interactive keepsake",
+    colors: ["#101812", "#E9DFC8", "#DCA475", "#AAA997"],
+    stack: ["Next.js 16", "Tailwind CSS 4", "shadcn/ui", "Three.js"],
+    image: "showcase/hollow.jpg",
+    url: "https://hollow-lndev.vercel.app",
+  },
+  {
+    slug: "sundaze",
+    name: "Sundaze",
+    category: "A playful surf club",
+    direction: "Saltwater & sunshine",
+    group: "playful",
+    description:
+      "A sunny surf club with ocean photography, click ripples and animated typography. Read a wave, explore the kit, test your timing and collect stamps in an interactive surf school.",
+    short: "A little salt. A lot of good.",
+    type: "Archivo, Manrope",
+    signature:
+      "Interactive surf school, a timing game and Canvas UI water ripples",
+    colors: ["#293FE0", "#FFE65B", "#FFFCF3", "#153164"],
+    stack: ["Next.js 16", "Tailwind CSS 4", "shadcn/ui", "Canvas UI"],
+    image: "showcase/sundaze.jpg",
+    url: "https://sundaze-lndev.vercel.app",
+  },
+  {
     slug: "veillee",
     name: "Veillée",
     category: "A Werewolf game night",

@@ -279,9 +279,13 @@ void main () {
   } else {
     col = page(pUv + offs).rgb;
   }
-  col += glint;
-  col *= 1.0 - shade;
-  outColor = vec4(col, 1.0);
+  // HTML content can be transparent (the timing game's decorative layer).
+  // Preserve its alpha instead of turning every empty pixel opaque black.
+  float contentAlpha = page(pUv + offs).a;
+  float highlightAlpha = clamp(glint * 0.9 + shade * 0.5, 0.0, 0.85);
+  float alpha = contentAlpha + highlightAlpha * (1.0 - contentAlpha);
+  col = col * (1.0 - shade) + vec3(glint) * alpha;
+  outColor = vec4(min(col, vec3(alpha)), alpha);
 }`;
 
 export function supportsHtmlInCanvas(): boolean {

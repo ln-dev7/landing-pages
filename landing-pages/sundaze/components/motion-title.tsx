@@ -14,9 +14,17 @@ export function MotionTitle({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => setEntered(e.isIntersecting), {
-      threshold: 0.15,
-    });
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setEntered(true);
+          io.disconnect();
+        }
+      },
+      {
+        threshold: 0.15,
+      },
+    );
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -38,7 +46,11 @@ export function MotionTitle({
             <span className="word-mask" key={j}>
               <span
                 className="word-body"
-                style={{ "--word-delay": `${index++ * 65}ms` } as CSSProperties}
+                style={
+                  {
+                    "--word-delay": `${Math.min(index++ * 65, 280)}ms`,
+                  } as CSSProperties
+                }
               >
                 {word}
               </span>{" "}

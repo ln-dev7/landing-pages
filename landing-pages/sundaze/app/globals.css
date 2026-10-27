@@ -1784,6 +1784,7 @@ footer a:hover {
 }
 .timing-ocean {
   position: relative;
+  z-index: 3;
   height: 150px;
   margin: 0 18px;
   pointer-events: none;
@@ -2286,11 +2287,15 @@ h2.motion-title span {
 }
 .motion-title .word-mask {
   display: inline-block;
-  overflow: hidden;
+  /* Let italic overhangs, accents and descenders paint outside the line box. */
+  overflow: visible;
   vertical-align: top;
-  padding: 0 0.06em 0.13em 0;
-  margin: 0 0.1em -0.13em 0;
-  line-height: 1.1;
+  padding: 0;
+  margin: 0 0.22em 0 0;
+  line-height: 1.12;
+}
+.motion-title .word-mask:last-child {
+  margin-right: 0;
 }
 .motion-title .word-body {
   display: inline-block;
@@ -2324,7 +2329,7 @@ h2.motion-title .line-outline .word-body {
 }
 @media (prefers-reduced-motion: no-preference) {
   .motion-title .word-body {
-    transform: translate3d(0, 115%, 0) rotate(4deg);
+    transform: translate3d(0, 0.65em, 0) rotate(2deg);
     opacity: 0;
     transition:
       transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
@@ -2359,7 +2364,7 @@ h2.motion-title .line-outline .word-body {
 }
 @media (max-width: 700px) {
   .motion-title .word-mask {
-    margin-right: 0.08em;
+    margin-right: 0.18em;
   }
   .hero h1.motion-title {
     font-size: clamp(54px, 12.6vw, 75px);

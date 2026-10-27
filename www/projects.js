@@ -30,7 +30,7 @@ window.PROJECTS = [
       "Interactive surf school, a timing game and Canvas UI water ripples",
     colors: ["#293FE0", "#FFE65B", "#FFFCF3", "#153164"],
     stack: ["Next.js 16", "Tailwind CSS 4", "shadcn/ui", "Canvas UI"],
-    image: "showcase/sundaze.jpg",
+    image: "showcase/sundaze.jpg?v=2",
     url: "https://sundaze-lndev.vercel.app",
   },
   {

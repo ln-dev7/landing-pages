@@ -2555,22 +2555,22 @@ li:not([data-firing="true"]) > .watch-row .watch-main {
   background: var(--faint);
 }
 [data-off="true"] .watch-main,
-[data-off="true"] .spark,
+[data-off="true"] .sparkline,
 [data-off="true"] .watch-value {
   opacity: 0.45;
 }
-.spark {
+.sparkline {
   width: 60px;
   height: 20px;
   overflow: visible;
 }
-.spark path {
+.sparkline path {
   fill: none;
   stroke: var(--blue);
   stroke-width: 1.5;
   stroke-linejoin: round;
 }
-.spark[data-bad="true"] path {
+.sparkline[data-bad="true"] path {
   stroke: var(--red);
 }
 .watch-value {
@@ -3075,7 +3075,7 @@ li:not([data-firing="true"]) > .watch-row .watch-main {
   .watch-row {
     grid-template-columns: minmax(0, 1fr) 46px 34px;
   }
-  .spark {
+  .sparkline {
     display: none;
   }
   .funnel-view li {

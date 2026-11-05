@@ -72,7 +72,7 @@ function Spark({ values, bad }: { values: number[]; bad?: boolean }) {
     .join(" ");
   return (
     <svg
-      className="spark"
+      className="sparkline"
       viewBox="0 0 60 20"
       aria-hidden="true"
       data-bad={bad}

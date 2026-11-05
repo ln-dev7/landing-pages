@@ -17,6 +17,9 @@ import {
   Hand,
 } from "lucide-react";
 import { toast } from "sonner";
+import NumberFlow from "@number-flow/react";
+import { AnimatePresence, MotionConfig, motion } from "motion/react";
+import { Pill, spring, useActiveSection } from "./motion-kit";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -41,8 +44,8 @@ const SOURCE =
   "https://github.com/ln-dev7/landing-pages/tree/master/landing-pages/redline";
 
 const links = [
-  { href: "#product", label: "Product" },
   { href: "#flow", label: "Review flow" },
+  { href: "#product", label: "Product" },
   { href: "#pricing", label: "Pricing" },
   { href: "#changelog", label: "Changelog" },
 ];
@@ -185,8 +188,21 @@ const faqs = [
   },
 ];
 
+const sections = ["flow", "product", "pricing", "changelog", "faq"];
+const lift = { whileHover: { y: -4 }, transition: spring };
+const featureTabs = [
+  { id: "rules", icon: ScrollText, label: "House rules" },
+  { id: "tests", icon: FlaskConical, label: "Tested fixes" },
+  { id: "summary", icon: Sparkles, label: "Summaries" },
+  { id: "security", icon: KeyRound, label: "Secrets" },
+  { id: "thread", icon: MessageSquare, label: "Ask why" },
+];
+
 export default function Redline() {
   const [menu, setMenu] = useState(false);
+  const [feature, setFeature] = useState("rules");
+  const [hovered, setHovered] = useState<string | null>(null);
+  const { active, select } = useActiveSection(sections);
   const [scrolled, setScrolled] = useState(false);
   const [level, setLevel] = useState(1);
   const [seats, setSeats] = useState(12);
@@ -202,7 +218,7 @@ export default function Redline() {
   const visibleNotes = sampleNotes.filter((n) => n.level <= level);
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <a className="skip" href="#main">
         Skip to content
       </a>
@@ -212,13 +228,37 @@ export default function Redline() {
             <Logo />
             Redline
           </a>
-          <nav aria-label="Main" className="nav-links">
-            {links.map((l) => (
-              <a key={l.href} href={l.href}>
-                {l.label}
-              </a>
-            ))}
-            <a href={LN}>Docs</a>
+          <nav
+            aria-label="Main"
+            className="nav-links"
+            onMouseLeave={() => setHovered(null)}
+          >
+            {[...links, { href: LN, label: "Docs" }].map((l) => {
+              const id = l.href.startsWith("#") ? l.href.slice(1) : "docs";
+              const on = active === id;
+              const shown = (hovered ?? active) === id;
+              return (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  aria-current={on ? "location" : undefined}
+                  onMouseEnter={() => setHovered(id)}
+                  onFocus={() => setHovered(id)}
+                  onClick={() => id !== "docs" && select(id)}
+                >
+                  {shown && <Pill id="nav-pill" className="pill nav-pill" />}
+                  <span>{l.label}</span>
+                  {on && (
+                    <motion.i
+                      layoutId="nav-mark"
+                      className="nav-mark"
+                      transition={spring}
+                      aria-hidden="true"
+                    />
+                  )}
+                </a>
+              );
+            })}
           </nav>
           <div className="nav-actions">
             <button type="button" className="text-button" onClick={concept}>
@@ -245,12 +285,24 @@ export default function Redline() {
             The reviewer who reads every line.
           </SheetDescription>
           <nav aria-label="Mobile" className="sheet-links">
-            {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setMenu(false)}>
+            {[...links, { href: LN, label: "Docs" }].map((l, i) => (
+              <motion.a
+                key={l.href}
+                href={l.href}
+                aria-current={
+                  active === l.href.slice(1) ? "location" : undefined
+                }
+                onClick={() => {
+                  if (l.href.startsWith("#")) select(l.href.slice(1));
+                  setMenu(false);
+                }}
+                initial={{ opacity: 0, x: 16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ ...spring, delay: 0.08 + i * 0.05 }}
+              >
                 {l.label}
-              </a>
+              </motion.a>
             ))}
-            <a href={LN}>Docs</a>
           </nav>
           <Button
             onClick={() => {
@@ -296,10 +348,18 @@ export default function Redline() {
         <section className="langs" aria-label="Supported languages" data-reveal>
           <p>Fluent in the languages you ship</p>
           <div className="lang-row">
-            {languages.map((l) => (
-              <span key={l} className="mono">
+            {languages.map((l, i) => (
+              <motion.span
+                key={l}
+                className="mono"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -3 }}
+                transition={{ ...spring, delay: i * 0.035 }}
+              >
                 {l}
-              </span>
+              </motion.span>
             ))}
           </div>
         </section>
@@ -316,11 +376,27 @@ export default function Redline() {
           </div>
           <ol className="steps">
             {steps.map((s) => (
-              <li key={s.n} data-reveal>
-                <span className="mono">{s.n}</span>
+              <motion.li
+                key={s.n}
+                data-reveal
+                whileHover="hover"
+                variants={{ hover: { y: -4 } }}
+                transition={spring}
+              >
+                <span className="mono step-n">
+                  {s.n}
+                  <motion.i
+                    className="step-line"
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    variants={{ hover: { scaleX: 1.6 } }}
+                    transition={{ ...spring, duration: 0.8, delay: 0.2 }}
+                  />
+                </span>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
-              </li>
+              </motion.li>
             ))}
           </ol>
 
@@ -344,6 +420,9 @@ export default function Redline() {
                     aria-checked={level === i}
                     onClick={() => setLevel(i)}
                   >
+                    {level === i && (
+                      <Pill id="level-ring" className="pill level-ring" />
+                    )}
                     <strong>{l.label}</strong>
                     <span>{l.hint}</span>
                   </button>
@@ -352,17 +431,31 @@ export default function Redline() {
             </div>
             <div className="strictness-panel">
               <header className="mono">
-                PR #317 · {visibleNotes.length} note
+                PR #317 · <NumberFlow value={visibleNotes.length} /> note
                 {visibleNotes.length > 1 ? "s" : ""}
               </header>
               <ul aria-live="polite">
-                {visibleNotes.map((n) => (
-                  <li key={n.where + n.text} data-severity={n.severity}>
-                    <span className="sev">{n.severity}</span>
-                    <code className="mono">{n.where}</code>
-                    <p>{n.text}</p>
-                  </li>
-                ))}
+                <AnimatePresence mode="popLayout" initial={false}>
+                  {visibleNotes.map((n) => (
+                    <motion.li
+                      key={n.where + n.text}
+                      data-severity={n.severity}
+                      layout
+                      initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{
+                        opacity: 0,
+                        scale: 0.95,
+                        transition: { duration: 0.15 },
+                      }}
+                      transition={spring}
+                    >
+                      <span className="sev">{n.severity}</span>
+                      <code className="mono">{n.where}</code>
+                      <p>{n.text}</p>
+                    </motion.li>
+                  ))}
+                </AnimatePresence>
               </ul>
             </div>
           </div>
@@ -373,23 +466,23 @@ export default function Redline() {
             <span className="eyebrow mono">PRODUCT</span>
             <h2>Everything a careful review needs.</h2>
           </div>
-          <Tabs defaultValue="rules" className="features" data-reveal>
+          <Tabs
+            value={feature}
+            onValueChange={(v) => setFeature(String(v))}
+            className="features"
+            data-reveal
+          >
             <TabsList className="feature-tabs">
-              <TabsTrigger value="rules">
-                <ScrollText size={15} /> House rules
-              </TabsTrigger>
-              <TabsTrigger value="tests">
-                <FlaskConical size={15} /> Tested fixes
-              </TabsTrigger>
-              <TabsTrigger value="summary">
-                <Sparkles size={15} /> Summaries
-              </TabsTrigger>
-              <TabsTrigger value="security">
-                <KeyRound size={15} /> Secrets
-              </TabsTrigger>
-              <TabsTrigger value="thread">
-                <MessageSquare size={15} /> Ask why
-              </TabsTrigger>
+              {featureTabs.map(({ id, icon: Icon, label }) => (
+                <TabsTrigger key={id} value={id}>
+                  {feature === id && (
+                    <Pill id="feature-pill" className="pill feature-pill" />
+                  )}
+                  <span>
+                    <Icon size={15} /> {label}
+                  </span>
+                </TabsTrigger>
+              ))}
             </TabsList>
             <TabsContent value="rules" className="feature">
               <div>
@@ -532,13 +625,17 @@ export default function Redline() {
               body: "Read access to code, write access to comments. Nothing else is requested.",
             },
           ].map(({ icon: Icon, title, body }) => (
-            <div key={title} data-reveal>
-              <span className="principle-icon">
+            <motion.div key={title} data-reveal whileHover="hover">
+              <motion.span
+                className="principle-icon"
+                variants={{ hover: { y: -3, rotate: -8 } }}
+                transition={spring}
+              >
                 <Icon size={17} />
-              </span>
+              </motion.span>
               <h3>{title}</h3>
               <p>{body}</p>
-            </div>
+            </motion.div>
           ))}
         </section>
 
@@ -549,7 +646,7 @@ export default function Redline() {
             <p>Reviewers, managers and bots are free. So is open source.</p>
           </div>
           <div className="pricing" data-reveal>
-            <article className="plan">
+            <motion.article className="plan" {...lift}>
               <h3>Open source</h3>
               <p className="plan-note">For public repositories.</p>
               <p className="price">
@@ -570,8 +667,8 @@ export default function Redline() {
               <Button variant="outline" onClick={concept}>
                 Add to a public repo
               </Button>
-            </article>
-            <article className="plan plan-team">
+            </motion.article>
+            <motion.article className="plan plan-team" {...lift}>
               <header>
                 <h3>Team</h3>
                 <div
@@ -584,14 +681,16 @@ export default function Redline() {
                     aria-pressed={!yearly}
                     onClick={() => setYearly(false)}
                   >
-                    Monthly
+                    {!yearly && <Pill id="billing-pill" />}
+                    <span>Monthly</span>
                   </button>
                   <button
                     type="button"
                     aria-pressed={yearly}
                     onClick={() => setYearly(true)}
                   >
-                    Yearly
+                    {yearly && <Pill id="billing-pill" />}
+                    <span>Yearly</span>
                   </button>
                 </div>
               </header>
@@ -600,7 +699,10 @@ export default function Redline() {
               </p>
               <div className="calc">
                 <label htmlFor="seats">
-                  Developers <output htmlFor="seats">{seats}</output>
+                  Developers{" "}
+                  <output htmlFor="seats">
+                    <NumberFlow value={seats} />
+                  </output>
                 </label>
                 <input
                   id="seats"
@@ -617,9 +719,29 @@ export default function Redline() {
                 />
               </div>
               <p className="price">
-                <strong>${(seats * seatPrice).toLocaleString("en-US")}</strong>
+                <strong>
+                  <NumberFlow
+                    value={seats * seatPrice}
+                    format={{
+                      style: "currency",
+                      currency: "USD",
+                      maximumFractionDigits: 0,
+                    }}
+                    locales="en-US"
+                  />
+                </strong>
                 <span>
-                  / month · ${seatPrice} per developer
+                  / month ·{" "}
+                  <NumberFlow
+                    value={seatPrice}
+                    format={{
+                      style: "currency",
+                      currency: "USD",
+                      maximumFractionDigits: 0,
+                    }}
+                    locales="en-US"
+                  />{" "}
+                  per developer
                   {yearly ? ", billed yearly" : ""}
                 </span>
               </p>
@@ -636,8 +758,8 @@ export default function Redline() {
                 ))}
               </ul>
               <Button onClick={concept}>Start a 14-day trial</Button>
-            </article>
-            <article className="plan">
+            </motion.article>
+            <motion.article className="plan" {...lift}>
               <h3>Enterprise</h3>
               <p className="plan-note">For regulated code and many teams.</p>
               <p className="price">
@@ -658,7 +780,7 @@ export default function Redline() {
               <Button variant="outline" onClick={concept}>
                 Talk to us
               </Button>
-            </article>
+            </motion.article>
           </div>
           <p className="fine">
             Fictional prices for a concept product. Nothing is billed.
@@ -702,7 +824,7 @@ export default function Redline() {
         <section className="closing" data-reveal>
           <h2>
             Your next pull request <br />
-            deserves a second pair of eyes.
+            deserves a <span className="underline">second pair of eyes.</span>
           </h2>
           <p>Install once. Redline reviews the next PR you open.</p>
           <div className="hero-ctas">
@@ -745,6 +867,6 @@ export default function Redline() {
         </div>
       </footer>
       <Toaster />
-    </>
+    </MotionConfig>
   );
 }

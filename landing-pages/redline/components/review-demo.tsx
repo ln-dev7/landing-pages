@@ -16,6 +16,9 @@ import {
   GitPullRequest,
 } from "lucide-react";
 import { toast } from "sonner";
+import NumberFlow from "@number-flow/react";
+import { AnimatePresence, motion } from "motion/react";
+import { Pill, spring } from "./motion-kit";
 import { files, type DiffLine, type Note } from "./review-data";
 import { Logo } from "./logo";
 
@@ -149,8 +152,16 @@ export function ReviewDemo() {
     setPaths(next);
   }, [file]);
 
+  // Follow the cards while they animate, so connectors stay attached.
   useLayoutEffect(() => {
-    measure();
+    let frame = 0;
+    const until = performance.now() + 900;
+    const loop = () => {
+      measure();
+      if (performance.now() < until) frame = requestAnimationFrame(loop);
+    };
+    loop();
+    return () => cancelAnimationFrame(frame);
   }, [measure, ready, applied]);
 
   useEffect(() => {
@@ -194,9 +205,9 @@ export function ReviewDemo() {
         <span className="pr-state">Open</span>
         <div className="pr-progress" aria-live="polite">
           <span>
-            {ready
-              ? `Review ready · ${total} files`
-              : `Reading ${Math.max(read, 1)} of ${total} files`}
+            {ready ? "Review ready · " : "Reading "}
+            <NumberFlow value={Math.max(read, 1)} />
+            {ready ? "" : ` of ${total}`} files
           </span>
           <i>
             <b style={{ width: `${(Math.max(read, 0.4) / total) * 100}%` }} />
@@ -229,7 +240,8 @@ export function ReviewDemo() {
                 .map((f, i) => {
                   const seen = files.indexOf(f) < read;
                   return (
-                    <button
+                    <motion.button
+                      whileTap={{ scale: 0.98 }}
                       type="button"
                       key={f.path}
                       className="tree-file"
@@ -238,6 +250,9 @@ export function ReviewDemo() {
                       data-seen={seen}
                       style={{ animationDelay: `${i * 60}ms` }}
                     >
+                      {f.path === active && (
+                        <Pill id="file-pill" className="pill file-pill" />
+                      )}
                       <FileCode size={14} aria-hidden="true" />
                       <span className="tree-name">{f.name}</span>
                       {f.flag && seen && (
@@ -254,7 +269,7 @@ export function ReviewDemo() {
                       <span className="tree-stat mono">
                         <ins>+{f.added}</ins> <del>−{f.removed}</del>
                       </span>
-                    </button>
+                    </motion.button>
                   );
                 })}
             </div>
@@ -271,9 +286,16 @@ export function ReviewDemo() {
             </small>
           </div>
           <div className="diff-code mono" data-scanning={!ready}>
-            {rows.map((r) => (
-              <div
+            {rows.map((r, i) => (
+              <motion.div
                 key={r.key}
+                initial={
+                  r.fixed ? { height: 0, opacity: 0 } : { opacity: 0, x: -6 }
+                }
+                animate={
+                  r.fixed ? { height: 27, opacity: 1 } : { opacity: 1, x: 0 }
+                }
+                transition={{ ...spring, delay: r.fixed ? 0 : i * 0.025 }}
                 className="diff-line"
                 data-kind={r.kind}
                 data-fixed={r.fixed}
@@ -290,7 +312,7 @@ export function ReviewDemo() {
                   {r.kind === "add" ? "+" : r.kind === "del" ? "−" : ""}
                 </span>
                 <code>{highlight(r.code)}</code>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -302,11 +324,18 @@ export function ReviewDemo() {
             </span>
             <strong>Redline</strong>
             <span>
-              {ready
-                ? file.notes.length
-                  ? `${file.notes.length} note${file.notes.length > 1 ? "s" : ""} · ${open} open`
-                  : "No notes"
-                : "Reading…"}
+              {ready ? (
+                file.notes.length ? (
+                  <>
+                    {file.notes.length} note{file.notes.length > 1 ? "s" : ""} ·{" "}
+                    <NumberFlow value={open} /> open
+                  </>
+                ) : (
+                  "No notes"
+                )
+              ) : (
+                "Reading…"
+              )}
             </span>
           </header>
           {!ready && (
@@ -317,20 +346,29 @@ export function ReviewDemo() {
             </div>
           )}
           {ready && file.notes.length === 0 && (
-            <p className="notes-clear">
+            <motion.p
+              key={file.path}
+              className="notes-clear"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={spring}
+            >
               <Check size={15} /> Nothing to flag in {file.name}. It does what
               the description says.
-            </p>
+            </motion.p>
           )}
           {ready &&
             file.notes.map((n, i) => (
-              <article
+              <motion.article
                 key={n.id}
+                layout
                 className="note"
                 data-severity={n.severity}
                 data-done={Boolean(applied[n.id])}
-                style={{ animationDelay: `${i * 260}ms` }}
-                onAnimationEnd={measure}
+                initial={{ opacity: 0, x: 16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ ...spring, delay: i * 0.22 }}
+                onAnimationComplete={measure}
                 ref={(el) => {
                   if (el) cardEls.current.set(n.id, el);
                 }}
@@ -340,48 +378,66 @@ export function ReviewDemo() {
                   <code className="mono">{n.where}</code>
                 </header>
                 <NoteBody note={n} />
-                {applied[n.id] ? (
-                  <p className="note-done">
-                    <Check size={14} />{" "}
-                    {n.action === "Apply" ? "Applied" : "Committed"} as{" "}
-                    <code className="mono">
-                      {n.id === "double"
-                        ? "9c41e2a"
-                        : n.id === "race"
-                          ? "e07b5d1"
-                          : "3fa8c90"}
-                    </code>
-                  </p>
-                ) : (
-                  <>
-                    <pre className="suggestion mono">
-                      <span>+</span>
-                      {n.fix.code.trim()}
-                    </pre>
-                    <div className="note-actions">
-                      <button
-                        type="button"
-                        className="button button-sm"
-                        onClick={() => apply(n)}
-                      >
-                        {n.action}
-                      </button>
-                      <button
-                        type="button"
-                        className="button button-outline button-sm"
-                        onClick={() =>
-                          toast("Reply sent to the thread", {
-                            description:
-                              "In the demo, Redline answers in the docs instead.",
-                          })
-                        }
-                      >
-                        <CornerUpLeft size={13} /> Reply
-                      </button>
-                    </div>
-                  </>
-                )}
-              </article>
+                <AnimatePresence mode="popLayout" initial={false}>
+                  {applied[n.id] ? (
+                    <motion.p
+                      key="done"
+                      className="note-done"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={spring}
+                    >
+                      <Check size={14} />{" "}
+                      {n.action === "Apply" ? "Applied" : "Committed"} as{" "}
+                      <code className="mono">
+                        {n.id === "double"
+                          ? "9c41e2a"
+                          : n.id === "race"
+                            ? "e07b5d1"
+                            : "3fa8c90"}
+                      </code>
+                    </motion.p>
+                  ) : (
+                    <motion.div
+                      key="open"
+                      className="note-open"
+                      exit={{
+                        opacity: 0,
+                        scale: 0.96,
+                        transition: { duration: 0.15 },
+                      }}
+                    >
+                      <pre className="suggestion mono">
+                        <span>+</span>
+                        {n.fix.code.trim()}
+                      </pre>
+                      <div className="note-actions">
+                        <motion.button
+                          whileTap={{ scale: 0.94 }}
+                          type="button"
+                          className="button button-sm"
+                          onClick={() => apply(n)}
+                        >
+                          {n.action}
+                        </motion.button>
+                        <motion.button
+                          whileTap={{ scale: 0.94 }}
+                          type="button"
+                          className="button button-outline button-sm"
+                          onClick={() =>
+                            toast("Reply sent to the thread", {
+                              description:
+                                "In the demo, Redline answers in the docs instead.",
+                            })
+                          }
+                        >
+                          <CornerUpLeft size={13} /> Reply
+                        </motion.button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.article>
             ))}
         </aside>
 

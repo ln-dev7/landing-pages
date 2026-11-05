@@ -1,6 +1,6 @@
 # Redline
 
-Standalone Next.js concept for a fictional AI code reviewer. Keep the ruled-paper background with its red margin line, warm ink and vermilion palette, local Geist and Geist Mono fonts, native scrolling and the custom shadcn/Base UI controls. The pull-request review is a local demo on invented code; "Commit fix", "Apply" and "Reply" only update React state and never push, post or send anything. Run typecheck and a production build, and verify desktop/mobile layouts plus the review demo (fixes, file switching, connectors), strictness levels, feature tabs, seat calculator, FAQ, mobile menu and reduced motion in the browser.
+Standalone Next.js concept for a fictional AI code reviewer. Keep the ruled-paper background with its red margin line, warm ink and vermilion palette, local Geist and Geist Mono fonts, native scrolling and the custom shadcn/Base UI controls. Animate numbers with NumberFlow and micro-interactions with Motion; keep them subtle and respect reduced motion. The pull-request review is a local demo on invented code; "Commit fix", "Apply" and "Reply" only update React state and never push, post or send anything. Run typecheck and a production build, and verify desktop/mobile layouts plus the review demo (fixes, file switching, connectors), strictness levels, feature tabs, seat calculator, FAQ, mobile menu and reduced motion in the browser.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

@@ -761,14 +761,14 @@ h3 {
 /* Scroll reveal */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(18px);
+  translate: 0 18px;
   transition:
     opacity 0.8s var(--ease),
-    transform 0.8s var(--ease);
+    translate 0.8s var(--ease);
 }
 [data-reveal][data-visible="true"] {
   opacity: 1;
-  transform: none;
+  translate: none;
 }
 
 /* Keyframes */
@@ -1185,12 +1185,25 @@ main::after {
 .tree-file:hover {
   background: #f1ede5;
 }
+.tree-file {
+  position: relative;
+}
+.tree-file > :not(.pill) {
+  position: relative;
+  z-index: 1;
+}
 .tree-file[aria-current="true"] {
-  background: var(--surface);
-  border-color: var(--line);
-  box-shadow: var(--shadow-sm);
   color: var(--ink);
   font-weight: 550;
+}
+.tree-file[aria-current="true"]:hover {
+  background: none;
+}
+.file-pill {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  inset: -1px;
 }
 .tree-file svg {
   color: var(--faint);
@@ -1406,7 +1419,6 @@ del {
   display: flex;
   flex-direction: column;
   gap: 9px;
-  animation: note 0.55s var(--ease) both;
 }
 .note header {
   display: flex;
@@ -1610,9 +1622,20 @@ del {
   font-size: 13px;
   color: var(--muted);
 }
+.level button {
+  position: relative;
+}
+.level button > :not(.pill) {
+  position: relative;
+  z-index: 1;
+}
 .level button[aria-checked="true"] {
   background: var(--surface);
-  border-color: var(--red);
+}
+.level-ring {
+  inset: -1px;
+  background: none;
+  border: 1.5px solid var(--red);
   box-shadow: 0 0 0 3px var(--red-soft);
 }
 .strictness-panel {
@@ -1643,7 +1666,6 @@ del {
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 10px 12px;
-  animation: bubble 0.35s var(--ease) both;
 }
 .strictness-panel li code {
   font-size: 11.5px;
@@ -1682,10 +1704,23 @@ del {
 .ui-tabs-trigger svg {
   color: var(--faint);
 }
+.ui-tabs-trigger {
+  position: relative;
+}
+.ui-tabs-trigger > span:not(.pill) {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
 .ui-tabs-trigger[data-active] {
-  background: var(--ink);
-  border-color: var(--ink);
   color: #fff;
+}
+.feature-pill {
+  inset: -1px;
+  background: var(--ink);
+  box-shadow: 0 6px 16px -8px #1c1a1799;
 }
 .ui-tabs-trigger[data-active] svg {
   color: #f4a491;
@@ -1893,6 +1928,7 @@ del {
   border-radius: 10px;
 }
 .plan-team .billing button {
+  position: relative;
   padding: 4px 10px;
   font-size: 12px;
   border-radius: 8px;
@@ -2139,6 +2175,198 @@ del {
   }
   [data-reveal] {
     opacity: 1;
-    transform: none;
+    translate: none;
+  }
+}
+
+/* Micro-interactions */
+.pill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.nav-links a {
+  position: relative;
+}
+.nav-links a:hover {
+  background: none;
+}
+.nav-links a > span:not(.pill),
+.billing button > span:not(.pill) {
+  position: relative;
+  z-index: 1;
+}
+.nav-pill {
+  background: #f3efe6;
+  box-shadow: none;
+}
+.nav-links a[aria-current] {
+  color: var(--ink);
+}
+.nav-mark {
+  position: absolute;
+  left: 50%;
+  bottom: 1px;
+  width: 16px;
+  height: 2px;
+  margin-left: -8px;
+  border-radius: 2px;
+  background: var(--red);
+  z-index: 1;
+}
+.button:active {
+  transform: scale(0.97);
+}
+.text-button {
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.text-button:hover {
+  background: #f3efe6;
+}
+.brand .logo-mark path:last-child {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 0;
+}
+.brand:hover .logo-mark path:last-child {
+  animation: write 0.7s var(--ease);
+}
+.brand:hover .logo-mark path:first-child {
+  animation: nib 0.7s var(--ease);
+  transform-origin: 30% 80%;
+}
+.diff-line[data-fixed="true"] {
+  min-height: 0;
+  overflow: hidden;
+}
+.diff-line:not([data-kind="ctx"]) .sign {
+  transition: color 0.2s;
+}
+.diff-line:hover {
+  filter: brightness(0.985);
+}
+.diff-line:hover .ln {
+  color: var(--ink-2);
+}
+.step-n {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.step-line {
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--red);
+  transform-origin: left;
+}
+.steps li,
+.plan,
+.lang-row span,
+.note {
+  transition:
+    box-shadow 0.35s var(--ease),
+    border-color 0.35s;
+}
+.steps li:hover,
+.plan:not(.plan-team):hover {
+  box-shadow: var(--shadow);
+  border-color: var(--line-strong);
+}
+.lang-row span {
+  cursor: default;
+}
+.lang-row span:hover {
+  border-color: #f0bfb2;
+  color: var(--red-deep);
+}
+.note:not([data-done="true"]):hover {
+  box-shadow:
+    0 1px 2px #1c1a170f,
+    0 14px 30px -12px #1c1a1738;
+}
+.feature > * {
+  animation: lift-in 0.55s var(--ease) both;
+}
+.feature > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.checks div,
+.thread-msg {
+  transition:
+    translate 0.3s var(--ease),
+    border-color 0.3s;
+}
+.checks div:hover,
+.thread-msg:hover {
+  translate: 0 -2px;
+  border-color: var(--line-strong);
+}
+.plan li svg {
+  transition: transform 0.3s var(--ease);
+}
+.plan li:hover svg {
+  transform: scale(1.25);
+}
+.ui-accordion-trigger {
+  transition: color 0.2s;
+}
+.ui-accordion-trigger:hover {
+  color: var(--red-deep);
+}
+.changelog h3 {
+  transition: color 0.2s;
+}
+.changelog li:hover h3 {
+  color: var(--red-deep);
+}
+.calc input::-webkit-slider-thumb {
+  transition:
+    transform 0.2s var(--ease),
+    box-shadow 0.2s;
+}
+.calc input:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+  cursor: grabbing;
+  box-shadow:
+    0 0 0 6px var(--red-soft),
+    var(--shadow);
+}
+.closing .underline::after {
+  animation: none;
+}
+.closing[data-visible="true"] .underline::after {
+  animation: underline 0.9s 0.45s var(--ease) forwards;
+}
+number-flow-react {
+  font-variant-numeric: tabular-nums;
+}
+@keyframes write {
+  from {
+    stroke-dashoffset: 20;
+  }
+}
+@keyframes nib {
+  30% {
+    transform: rotate(-10deg) translateX(-1px);
+  }
+  70% {
+    transform: rotate(6deg) translateX(1px);
+  }
+}
+@keyframes lift-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .closing .underline::after {
+    transform: rotate(-1.2deg) scaleX(1);
   }
 }

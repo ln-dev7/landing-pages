@@ -19,6 +19,6 @@ The repository, code, customers and prices are invented. Nothing is pushed, post
 
 ## Credits
 
-Geist and Geist Mono: SIL Open Font License, included alongside the font files. Icons: Lucide (ISC). Original SVG logo. Code: MIT.
+Geist and Geist Mono: SIL Open Font License, included alongside the font files. Icons: Lucide (ISC). Animated numbers: [NumberFlow](https://number-flow.barvian.me) (MIT). Micro-interactions: [Motion](https://motion.dev) (MIT). Original SVG logo. Code: MIT.
 
 Designed and developed by [LN](https://lndev.me). [Support the project](https://lndev.mychariow.shop/prd_3cu1s0).

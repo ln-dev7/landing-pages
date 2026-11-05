@@ -1199,7 +1199,7 @@ main::after {
 .tree-file[aria-current="true"]:hover {
   background: none;
 }
-.file-pill {
+.pill.file-pill {
   background: var(--surface);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-sm);
@@ -1632,7 +1632,7 @@ del {
 .level button[aria-checked="true"] {
   background: var(--surface);
 }
-.level-ring {
+.pill.level-ring {
   inset: -1px;
   background: none;
   border: 1.5px solid var(--red);
@@ -1717,7 +1717,7 @@ del {
 .ui-tabs-trigger[data-active] {
   color: #fff;
 }
-.feature-pill {
+.pill.feature-pill {
   inset: -1px;
   background: var(--ink);
   box-shadow: 0 6px 16px -8px #1c1a1799;
@@ -2199,7 +2199,7 @@ del {
   position: relative;
   z-index: 1;
 }
-.nav-pill {
+.pill.nav-pill {
   background: #f3efe6;
   box-shadow: none;
 }

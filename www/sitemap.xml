@@ -2,7 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://lp.lndev.me/</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-11-05</lastmod>
+    <image:image><image:loc>https://lp.lndev.me/showcase/plumb.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/redline.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/hollow.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/sundaze.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/veillee.png</image:loc></image:image>

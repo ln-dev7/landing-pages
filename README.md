@@ -9,6 +9,8 @@ Built with Next.js, Tailwind CSS and fully customized shadcn/ui.
 
 | Preview | Project | Concept |
 | --- | --- | --- |
+| [![Plumb](www/showcase/plumb.jpg)](https://plumb-lndev.vercel.app) | **[Plumb](landing-pages/plumb)** · [Live](https://plumb-lndev.vercel.app) | Product analytics you question in plain words |
+| [![Redline](www/showcase/redline.jpg)](https://redline-lndev.vercel.app) | **[Redline](landing-pages/redline)** · [Live](https://redline-lndev.vercel.app) | An AI code reviewer with notes in the margin |
 | [![Hollow](www/showcase/hollow.jpg)](https://hollow-lndev.vercel.app) | **[Hollow](landing-pages/hollow)** · [Live](https://hollow-lndev.vercel.app) | A haunted-house journey through a continuous 3D world |
 | [![Sundaze](www/showcase/sundaze.jpg)](https://sundaze-lndev.vercel.app) | **[Sundaze](landing-pages/sundaze)** · [Live](https://sundaze-lndev.vercel.app) | A playful surf club with an interactive surf school |
 | [![Veillée](www/showcase/veillee.png)](https://veillee-lndev.vercel.app) | **[Veillée](landing-pages/veillee)** · [Live](https://veillee-lndev.vercel.app) | An immersive Werewolf game night |

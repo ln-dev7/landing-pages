@@ -1,6 +1,38 @@
 /* Live previews follow https://[slug]-lndev.vercel.app. */
 window.PROJECTS = [
   {
+    slug: "plumb",
+    name: "Plumb",
+    category: "Product analytics you can question",
+    direction: "Metrics that explain themselves",
+    group: "editorial",
+    description:
+      "A product analytics tool you question in plain words. Data sources pulse into a live workspace, and every answer arrives with the chart, the segment behind it and the cause.",
+    short: "Ask your metrics why they moved.",
+    type: "Inter, JetBrains Mono",
+    signature: "A live Ask Plumb demo with streamed answers on sample data",
+    colors: ["#F3F3F2", "#111113", "#3460FF", "#EC5F5F"],
+    stack: ["Next.js 16", "Tailwind CSS 4", "shadcn/ui", "Motion"],
+    image: "showcase/plumb.jpg",
+    url: "https://plumb-lndev.vercel.app",
+  },
+  {
+    slug: "redline",
+    name: "Redline",
+    category: "An AI code reviewer",
+    direction: "Notes in the margin",
+    group: "editorial",
+    description:
+      "An AI code reviewer on ruled paper with a red margin line. Watch it read a pull request, pin its notes to the exact lines and commit the fixes in one click.",
+    short: "The reviewer who reads every line.",
+    type: "Geist, Geist Mono",
+    signature: "A live pull-request review with connected notes and one-click fixes",
+    colors: ["#F5F2EB", "#1C1A17", "#E5482C", "#3AA76A"],
+    stack: ["Next.js 16", "Tailwind CSS 4", "shadcn/ui", "Motion"],
+    image: "showcase/redline.jpg",
+    url: "https://redline-lndev.vercel.app",
+  },
+  {
     slug: "hollow",
     name: "Hollow",
     category: "An immersive Halloween story",

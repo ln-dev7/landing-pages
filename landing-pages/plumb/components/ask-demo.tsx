@@ -26,6 +26,32 @@ import { toast } from "sonner";
 import NumberFlow from "@number-flow/react";
 import { AnimatePresence, motion } from "motion/react";
 import { CountIn, Pill, spring } from "./motion-kit";
+import {
+  AskView,
+  ExperimentsView,
+  FunnelsView,
+  PeopleView,
+  RetentionView,
+  WatchersView,
+} from "./app-views";
+
+type View =
+  | "overview"
+  | "ask"
+  | "watchers"
+  | "funnels"
+  | "retention"
+  | "people"
+  | "experiments"
+  | "weekly"
+  | "activation";
+
+// Some answers open the view they talk about.
+const answerView: Partial<Record<string, View>> = {
+  onboarding: "overview",
+  checklist: "experiments",
+  exports: "people",
+};
 import { answers, ranges, type Answer, type Range } from "./data";
 import { Logo } from "./logo";
 
@@ -38,7 +64,15 @@ const prefersReduced = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function Chart({ range, focus }: { range: Range; focus: boolean }) {
+function Chart({
+  range,
+  focus,
+  quick,
+}: {
+  range: Range;
+  focus: boolean;
+  quick: boolean;
+}) {
   const data = ranges[range];
   const w = 520;
   const h = 150;
@@ -55,7 +89,7 @@ function Chart({ range, focus }: { range: Range; focus: boolean }) {
   const last = data.current.length - 1;
   const tickEvery = Math.ceil(data.labels.length / 5);
   return (
-    <div className="chart" data-focus={focus}>
+    <div className="chart" data-focus={focus} data-quick={quick}>
       <div className="chart-axis" aria-hidden="true">
         {[50, 45, 40, 35].map((t) => (
           <span key={t} style={{ top: `${((max - t) / (max - min)) * 100}%` }}>
@@ -192,6 +226,13 @@ function Detail({ answer }: { answer: Answer }) {
 
 export function AskDemo() {
   const [range, setRange] = useState<Range>("7d");
+  const [view, setView] = useState<View>("overview");
+  // After the intro, redraws (range or view changes) start right away.
+  const [quick, setQuick] = useState(false);
+  useEffect(() => {
+    const t = window.setTimeout(() => setQuick(true), 3200);
+    return () => window.clearTimeout(t);
+  }, []);
   const [messages, setMessages] = useState<Message[]>([]);
   const [busy, setBusy] = useState(false);
   const [draft, setDraft] = useState("");
@@ -212,6 +253,8 @@ export function AskDemo() {
     later(() => {
       setMessages((m) => [...m, { role: "user", text: answer.question }]);
       if (answer.focus === "drop") setRange("7d");
+      const related = answerView[answer.id];
+      if (related) setView(related);
     }, delay);
     later(
       () =>
@@ -261,7 +304,10 @@ export function AskDemo() {
   const suggestions = answers.filter((a) => !asked.has(a.question)).slice(0, 3);
   const current = [...messages].reverse().find((m) => m.role === "plumb") as
     Extract<Message, { role: "plumb" }> | undefined;
-  const focus = current?.done === true && current.answer.focus === "drop";
+  const focus =
+    current?.done === true &&
+    current.answer.focus === "drop" &&
+    (view === "overview" || view === "weekly");
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
@@ -283,20 +329,47 @@ export function AskDemo() {
   };
 
   const kpis = ranges[range].kpis;
-  const nav = [
-    { icon: LayoutGrid, label: "Overview", active: true },
-    { icon: Sparkles, label: "Ask Plumb", badge: "AI" },
-    { icon: Lightbulb, label: "Watchers" },
-    { icon: Funnel, label: "Funnels" },
-    { icon: RefreshCw, label: "Retention" },
-    { icon: Users, label: "People" },
-    { icon: FlaskConical, label: "Experiments" },
+  const nav: {
+    id: View;
+    icon: typeof LayoutGrid;
+    label: string;
+    badge?: string;
+  }[] = [
+    { id: "overview", icon: LayoutGrid, label: "Overview" },
+    { id: "ask", icon: Sparkles, label: "Ask Plumb", badge: "AI" },
+    { id: "watchers", icon: Lightbulb, label: "Watchers" },
+    { id: "funnels", icon: Funnel, label: "Funnels" },
+    { id: "retention", icon: RefreshCw, label: "Retention" },
+    { id: "people", icon: Users, label: "People" },
+    { id: "experiments", icon: FlaskConical, label: "Experiments" },
   ];
+  const pinned: typeof nav = [
+    { id: "weekly", icon: Bookmark, label: "Weekly review" },
+    { id: "activation", icon: ChartLine, label: "Activation board" },
+  ];
+  const open = (id: View) => {
+    if (id === "weekly") setRange("7d");
+    setView(id);
+  };
+  const navItem = ({ id, icon: Icon, label, badge }: (typeof nav)[number]) => (
+    <li key={id}>
+      <button
+        type="button"
+        aria-current={view === id ? "page" : undefined}
+        onClick={() => open(id)}
+      >
+        {view === id && <Pill id="side-pill" className="pill side-pill" />}
+        <Icon size={15} aria-hidden="true" />
+        <span>{label}</span>
+        {badge && <em>{badge}</em>}
+      </button>
+    </li>
+  );
 
   return (
     <div className="app" aria-label="Interactive Plumb demo with sample data">
-      <aside className="app-side" aria-hidden="true">
-        <div className="workspace">
+      <nav className="app-side" aria-label="Demo workspace">
+        <div className="workspace" aria-hidden="true">
           <span className="workspace-avatar">F</span>
           <span>
             <strong>Fernway</strong>
@@ -304,111 +377,153 @@ export function AskDemo() {
           </span>
           <ChevronsUpDown size={14} />
         </div>
-        <div className="app-search">
-          <Search size={14} />
-          <span>Search</span>
+        <button
+          type="button"
+          className="app-search"
+          onClick={() => {
+            setView("ask");
+            document
+              .getElementById("ask-input")
+              ?.focus({ preventScroll: true });
+          }}
+        >
+          <Search size={14} aria-hidden="true" />
+          <span>Search or ask</span>
           <kbd className="mono">⌘K</kbd>
-        </div>
+        </button>
         <span className="side-label">Explore</span>
-        <ul>
-          {nav.map(({ icon: Icon, label, active, badge }) => (
-            <li key={label} data-active={active}>
-              <Icon size={15} />
-              {label}
-              {badge && <em>{badge}</em>}
-            </li>
-          ))}
-        </ul>
+        <ul>{nav.map(navItem)}</ul>
         <span className="side-label">Pinned</span>
-        <ul>
-          <li>
-            <Bookmark size={15} /> Weekly review
-          </li>
-          <li>
-            <ChartLine size={15} /> Activation board
-          </li>
-        </ul>
-      </aside>
+        <ul>{pinned.map(navItem)}</ul>
+      </nav>
 
       <section className="app-main">
-        <header className="app-head">
-          <div>
-            <h3>Overview</h3>
-            <p>All teams · sample data</p>
-          </div>
-          <div className="range" role="group" aria-label="Date range">
-            {(Object.keys(ranges) as Range[]).map((r) => (
-              <button
-                key={r}
-                type="button"
-                aria-pressed={range === r}
-                onClick={() => setRange(r)}
-              >
-                {range === r && <Pill id="range-pill" />}
-                <span>{r}</span>
-              </button>
-            ))}
-          </div>
-          <button
-            type="button"
-            className="icon-ghost"
-            aria-label="Share this view"
-            onClick={() => toast("Link copied — in a real workspace, anyway.")}
-          >
-            <Share2 size={15} />
-          </button>
-        </header>
-        <div className="kpis">
-          {kpis.map((k) => (
-            <div className="kpi" key={k.label}>
-              <span>{k.label}</span>
-              <strong>
-                <NumberFlow
-                  value={k.unit === "%" ? k.value / 100 : k.value}
-                  format={
-                    k.unit === "%"
-                      ? {
-                          style: "percent",
-                          minimumFractionDigits: 1,
-                          maximumFractionDigits: 1,
-                        }
-                      : { maximumFractionDigits: 0 }
-                  }
-                  locales="en-US"
-                />
-              </strong>
-              <em data-good={k.good}>
-                <motion.i
-                  key={`${k.label}-${k.good}`}
-                  initial={{ y: k.good ? 4 : -4, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={spring}
-                >
-                  {k.good ? "↑" : "↓"}
-                </motion.i>{" "}
-                <NumberFlow
-                  value={k.delta}
-                  suffix={k.deltaUnit}
-                  format={{
-                    minimumFractionDigits: 1,
-                    maximumFractionDigits: 1,
-                  }}
-                  locales="en-US"
-                />
-              </em>
-            </div>
+        <div className="app-tabs" role="group" aria-label="Workspace views">
+          {[...nav, ...pinned].map(({ id, label }) => (
+            <button
+              key={id}
+              type="button"
+              aria-pressed={view === id}
+              onClick={() => open(id)}
+            >
+              {view === id && <Pill id="tab-pill" />}
+              <span>{label}</span>
+            </button>
           ))}
         </div>
-        <div className="chart-card">
-          <div className="chart-head">
-            <strong>Onboarding completion</strong>
-            <span className="legend">
-              <i className="legend-current" /> This period
-              <i className="legend-previous" /> Previous
-            </span>
-          </div>
-          <Chart range={range} focus={focus} />
-        </div>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={view === "weekly" ? "overview-weekly" : view}
+            className="app-view"
+            initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{
+              opacity: 0,
+              y: -6,
+              filter: "blur(4px)",
+              transition: { duration: 0.14 },
+            }}
+            transition={spring}
+          >
+            {(view === "overview" || view === "weekly") && (
+              <>
+                <header className="app-head">
+                  <div>
+                    <h3>{view === "weekly" ? "Weekly review" : "Overview"}</h3>
+                    <p>
+                      {view === "weekly"
+                        ? "Pinned by Maya · every Monday"
+                        : "All teams · sample data"}
+                    </p>
+                  </div>
+                  <div className="range" role="group" aria-label="Date range">
+                    {(Object.keys(ranges) as Range[]).map((r) => (
+                      <button
+                        key={r}
+                        type="button"
+                        aria-pressed={range === r}
+                        onClick={() => setRange(r)}
+                      >
+                        {range === r && <Pill id="range-pill" />}
+                        <span>{r}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    className="icon-ghost"
+                    aria-label="Share this view"
+                    onClick={() =>
+                      toast("Link copied — in a real workspace, anyway.")
+                    }
+                  >
+                    <Share2 size={15} />
+                  </button>
+                </header>
+                <div className="kpis">
+                  {kpis.map((k) => (
+                    <div className="kpi" key={k.label}>
+                      <span>{k.label}</span>
+                      <strong>
+                        <NumberFlow
+                          value={k.unit === "%" ? k.value / 100 : k.value}
+                          format={
+                            k.unit === "%"
+                              ? {
+                                  style: "percent",
+                                  minimumFractionDigits: 1,
+                                  maximumFractionDigits: 1,
+                                }
+                              : { maximumFractionDigits: 0 }
+                          }
+                          locales="en-US"
+                        />
+                      </strong>
+                      <em data-good={k.good}>
+                        <motion.i
+                          key={`${k.label}-${k.good}`}
+                          initial={{ y: k.good ? 4 : -4, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={spring}
+                        >
+                          {k.good ? "↑" : "↓"}
+                        </motion.i>{" "}
+                        <NumberFlow
+                          value={k.delta}
+                          suffix={k.deltaUnit}
+                          format={{
+                            minimumFractionDigits: 1,
+                            maximumFractionDigits: 1,
+                          }}
+                          locales="en-US"
+                        />
+                      </em>
+                    </div>
+                  ))}
+                </div>
+                <div className="chart-card">
+                  <div className="chart-head">
+                    <strong>Onboarding completion</strong>
+                    <span className="legend">
+                      <i className="legend-current" /> This period
+                      <i className="legend-previous" /> Previous
+                    </span>
+                  </div>
+                  <Chart range={range} focus={focus} quick={quick} />
+                </div>
+              </>
+            )}
+            {view === "ask" && <AskView onAsk={ask} busy={busy} />}
+            {view === "watchers" && <WatchersView />}
+            {view === "funnels" && <FunnelsView onAsk={ask} />}
+            {view === "activation" && (
+              <FunnelsView onAsk={ask} title="Activation board" />
+            )}
+            {view === "retention" && <RetentionView />}
+            {view === "people" && <PeopleView />}
+            {view === "experiments" && <ExperimentsView />}
+          </motion.div>
+        </AnimatePresence>
       </section>
 
       <section className="app-chat" aria-label="Ask Plumb">

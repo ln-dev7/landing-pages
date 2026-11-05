@@ -1,6 +1,6 @@
 # Plumb
 
-Standalone Next.js concept for a fictional AI product-analytics tool. Keep the light grey, ink and electric-blue art direction, the dotted hero with data-source beams, local Inter and JetBrains Mono fonts, native scrolling and the custom shadcn/Base UI controls. Animate numbers with NumberFlow and micro-interactions with Motion; keep them subtle and respect reduced motion. The Ask Plumb demo runs on invented sample data and pre-written answers; never imply a real account, signup or data connection, and never send what visitors type. Run typecheck and a production build, and verify desktop/mobile layouts plus the demo questions, date ranges, tabs, pricing toggle, FAQ, mobile menu and reduced motion in the browser.
+Standalone Next.js concept for a fictional AI product-analytics tool. Keep the light grey, ink and electric-blue art direction, the dotted hero with data-source beams, local Inter and JetBrains Mono fonts, native scrolling and the custom shadcn/Base UI controls. Animate numbers with NumberFlow and micro-interactions with Motion; keep them subtle and respect reduced motion. The Ask Plumb demo runs on invented sample data and pre-written answers; never imply a real account, signup or data connection, and never send what visitors type. Run typecheck and a production build, and verify desktop/mobile layouts plus every sidebar view of the demo, the demo questions, date ranges, tabs, pricing toggle, FAQ, mobile menu and reduced motion in the browser.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

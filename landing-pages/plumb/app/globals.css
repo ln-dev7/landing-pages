@@ -254,9 +254,28 @@ button:disabled {
   color: var(--ink);
   background: #ffffff8c;
 }
-.nav-links a[data-first="true"] {
-  background: var(--surface);
+.nav-links a {
+  position: relative;
+}
+.nav-links a[aria-current] {
   color: var(--ink);
+}
+.nav-links a[aria-current]:hover {
+  background: none;
+}
+.nav-links a > span:not(.pill),
+.range button > span:not(.pill),
+.billing button > span:not(.pill),
+.ui-tabs-trigger > span:not(.pill) {
+  position: relative;
+  z-index: 1;
+}
+.pill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 .nav-actions {
@@ -494,6 +513,15 @@ main::after {
     0 10px 24px -8px #3460ffa6;
   animation: spark 0.9s 0.9s var(--ease) both;
 }
+.spark {
+  cursor: default;
+}
+.spark-icon {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
 .spark svg {
   width: 48%;
   height: 48%;
@@ -663,6 +691,7 @@ kbd {
   border-radius: 9px;
 }
 .range button {
+  position: relative;
   border: 0;
   background: none;
   padding: 4px 10px;
@@ -672,9 +701,7 @@ kbd {
   color: var(--muted);
 }
 .range button[aria-pressed="true"] {
-  background: var(--surface);
   color: var(--ink);
-  box-shadow: var(--shadow-sm);
 }
 .icon-ghost {
   width: 30px;
@@ -907,7 +934,6 @@ kbd {
   padding: 8px 12px;
   border-radius: 14px 14px 4px 14px;
   font-weight: 500;
-  animation: bubble 0.4s var(--ease) both;
 }
 .bubble-note {
   font-size: 12px;
@@ -921,7 +947,6 @@ kbd {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  animation: bubble 0.4s var(--ease) both;
 }
 .bubble-plumb > p {
   line-height: 1.55;
@@ -963,7 +988,6 @@ kbd {
   flex-direction: column;
   gap: 7px;
   background: var(--soft);
-  animation: bubble 0.45s var(--ease) both;
 }
 .answer-row {
   display: flex;
@@ -1004,7 +1028,7 @@ kbd {
   gap: 8px;
   font-size: 12px;
 }
-.bar-row strong {
+.bar-row .bar-value {
   text-align: right;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -1020,10 +1044,8 @@ kbd {
   height: 100%;
   background: var(--blue);
   border-radius: 6px;
-  animation: bar 0.9s var(--ease) both;
-  transform-origin: left;
 }
-.answer-stat strong {
+.answer-stat .stat-value {
   font-size: 26px;
   font-weight: 620;
   letter-spacing: -0.03em;
@@ -1054,7 +1076,6 @@ kbd {
   transition:
     border-color 0.2s,
     color 0.2s;
-  animation: bubble 0.4s var(--ease) both;
 }
 .chips button:hover {
   border-color: var(--blue);
@@ -1207,10 +1228,11 @@ h3 {
     background 0.2s,
     color 0.2s;
 }
+.ui-tabs-trigger {
+  position: relative;
+}
 .ui-tabs-trigger[data-active] {
-  background: var(--surface);
   color: var(--ink);
-  box-shadow: var(--shadow-sm);
 }
 .example {
   display: grid;
@@ -1265,7 +1287,6 @@ h3 {
   background: var(--blue);
   border-radius: 4px 4px 2px 2px;
   opacity: 0.85;
-  animation: grow 0.8s var(--ease) both;
 }
 .mini-bars span[data-low="true"] {
   background: var(--red);
@@ -1489,10 +1510,11 @@ h3 {
   border-radius: 9px;
   color: var(--ink-2);
 }
+.billing button {
+  position: relative;
+}
 .billing button[aria-pressed="true"] {
-  background: var(--surface);
   color: var(--ink);
-  box-shadow: var(--shadow-sm);
 }
 .billing em {
   font-style: normal;
@@ -1842,14 +1864,14 @@ h3 {
 /* Scroll reveal */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(18px);
+  translate: 0 18px;
   transition:
     opacity 0.8s var(--ease),
-    transform 0.8s var(--ease);
+    translate 0.8s var(--ease);
 }
 [data-reveal][data-visible="true"] {
   opacity: 1;
-  transform: none;
+  translate: none;
 }
 
 /* Keyframes */
@@ -2104,6 +2126,142 @@ h3 {
   }
   [data-reveal] {
     opacity: 1;
-    transform: none;
+    translate: none;
+  }
+}
+
+/* Micro-interactions */
+.button:active {
+  transform: scale(0.97);
+}
+.text-button {
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.text-button:hover {
+  background: #e8e8e6;
+}
+.brand .logo-mark {
+  transform-origin: 50% 4%;
+}
+.brand:hover .logo-mark {
+  animation: swing 1.1s ease-in-out;
+}
+.swing {
+  display: inline-grid;
+  transform-origin: 50% 4%;
+}
+.hero-sources .source {
+  pointer-events: auto;
+  cursor: default;
+  transition:
+    translate 0.35s var(--ease),
+    color 0.25s,
+    border-color 0.25s,
+    box-shadow 0.35s;
+}
+.hero-sources .source:hover {
+  translate: 0 -4px;
+  color: var(--blue);
+  border-color: #c9d4ff;
+  box-shadow: 0 10px 26px -10px #3460ff59;
+}
+.source::after {
+  content: attr(title);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  translate: -50% -4px;
+  padding: 4px 8px;
+  border-radius: 7px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s,
+    translate 0.25s var(--ease);
+}
+.source:hover::after {
+  opacity: 1;
+  translate: -50% 0;
+}
+.tile,
+.plan {
+  transition:
+    box-shadow 0.35s var(--ease),
+    border-color 0.35s;
+}
+.tile:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--line-strong);
+}
+.plan:not([data-featured="true"]):hover {
+  box-shadow: var(--shadow);
+}
+.kpi {
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+.kpi:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-sm);
+}
+.kpi em i {
+  display: inline-block;
+  font-style: normal;
+}
+.changelog h3 {
+  transition: color 0.2s;
+}
+.changelog li:hover h3 {
+  color: var(--blue);
+}
+.plan li svg {
+  transition: transform 0.3s var(--ease);
+}
+.plan li:hover svg {
+  transform: scale(1.25);
+}
+.ui-accordion-trigger {
+  transition: color 0.2s;
+}
+.ui-accordion-trigger:hover {
+  color: var(--blue);
+}
+.footer nav a,
+.footer-bottom a {
+  transition: color 0.2s;
+}
+.chat-input button {
+  transition: background 0.2s;
+}
+.app-side li:not([data-active="true"]) {
+  transition: background 0.2s;
+}
+.app-side li:not([data-active="true"]):hover {
+  background: #ececea;
+}
+number-flow-react {
+  font-variant-numeric: tabular-nums;
+}
+@keyframes swing {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(12deg);
+  }
+  55% {
+    transform: rotate(-8deg);
+  }
+  80% {
+    transform: rotate(3deg);
   }
 }

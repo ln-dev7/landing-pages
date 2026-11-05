@@ -18,6 +18,9 @@ import {
   Sparkles,
 } from "lucide-react";
 import { toast } from "sonner";
+import NumberFlow from "@number-flow/react";
+import { MotionConfig, motion } from "motion/react";
+import { Pill, spring, useActiveSection } from "./motion-kit";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -42,8 +45,8 @@ const SOURCE =
   "https://github.com/ln-dev7/landing-pages/tree/master/landing-pages/plumb";
 
 const links = [
-  { href: "#product", label: "Product" },
   { href: "#ask", label: "How it answers" },
+  { href: "#product", label: "Product" },
   { href: "#pricing", label: "Pricing" },
   { href: "#changelog", label: "Changelog" },
 ];
@@ -253,8 +256,13 @@ const faqs = [
   },
 ];
 
+const sections = ["ask", "product", "pricing", "changelog", "faq"];
+const lift = { whileHover: { y: -4 }, transition: spring };
+
 export default function Plumb() {
   const [menu, setMenu] = useState(false);
+  const [example, setExample] = useState("drop");
+  const { active, select } = useActiveSection(sections);
   const [yearly, setYearly] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   useReveal();
@@ -266,7 +274,7 @@ export default function Plumb() {
   }, []);
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <a className="skip" href="#main">
         Skip to content
       </a>
@@ -277,11 +285,21 @@ export default function Plumb() {
             Plumb
           </a>
           <nav aria-label="Main" className="nav-links">
-            {links.map((l, i) => (
-              <a key={l.href} href={l.href} data-first={i === 0}>
-                {l.label}
-              </a>
-            ))}
+            {links.map((l) => {
+              const id = l.href.slice(1);
+              const on = active === id;
+              return (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  aria-current={on ? "location" : undefined}
+                  onClick={() => select(id)}
+                >
+                  {on && <Pill id="nav-pill" className="pill nav-pill" />}
+                  <span>{l.label}</span>
+                </a>
+              );
+            })}
             <a href={LN}>Docs</a>
           </nav>
           <div className="nav-actions">
@@ -307,12 +325,32 @@ export default function Plumb() {
             Product analytics you can question.
           </SheetDescription>
           <nav aria-label="Mobile" className="sheet-links">
-            {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setMenu(false)}>
+            {links.map((l, i) => (
+              <motion.a
+                key={l.href}
+                href={l.href}
+                aria-current={
+                  active === l.href.slice(1) ? "location" : undefined
+                }
+                onClick={() => {
+                  select(l.href.slice(1));
+                  setMenu(false);
+                }}
+                initial={{ opacity: 0, x: 16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ ...spring, delay: 0.08 + i * 0.05 }}
+              >
                 {l.label}
-              </a>
+              </motion.a>
             ))}
-            <a href={LN}>Docs</a>
+            <motion.a
+              href={LN}
+              initial={{ opacity: 0, x: 16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ ...spring, delay: 0.08 + links.length * 0.05 }}
+            >
+              Docs
+            </motion.a>
           </nav>
           <Button
             onClick={() => {
@@ -363,7 +401,13 @@ export default function Plumb() {
                 <span className="rise" style={{ animationDelay: ".5s" }}>
                   Why
                   <span className="spark" aria-hidden="true">
-                    <Sparkles size={30} strokeWidth={1.8} />
+                    <motion.span
+                      className="spark-icon"
+                      whileHover={{ rotate: 18, scale: 1.12 }}
+                      transition={spring}
+                    >
+                      <Sparkles size={30} strokeWidth={1.8} />
+                    </motion.span>
                   </span>
                   They Moved
                 </span>
@@ -411,42 +455,72 @@ export default function Plumb() {
               or challenge it.
             </p>
           </div>
-          <Tabs defaultValue="drop" className="examples" data-reveal>
+          <Tabs
+            value={example}
+            onValueChange={(v) => setExample(String(v))}
+            className="examples"
+            data-reveal
+          >
             <TabsList className="example-tabs">
               {examples.map((e) => (
                 <TabsTrigger key={e.id} value={e.id}>
-                  {e.tab}
+                  {example === e.id && <Pill id="example-pill" />}
+                  <span>{e.tab}</span>
                 </TabsTrigger>
               ))}
             </TabsList>
             {examples.map((e) => (
               <TabsContent key={e.id} value={e.id} className="example">
-                <div className="step">
+                <motion.div
+                  className="step"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={spring}
+                >
                   <span className="step-n mono">01 · YOU ASK</span>
                   <p className="step-question">“{e.question}”</p>
-                </div>
-                <div className="step">
+                </motion.div>
+                <motion.div
+                  className="step"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ ...spring, delay: 0.07 }}
+                >
                   <span className="step-n mono">02 · PLUMB QUERIES</span>
                   <pre className="mono">
-                    {e.query.map((l) => (
-                      <span key={l}>{l}</span>
+                    {e.query.map((l, i) => (
+                      <motion.span
+                        key={l}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ ...spring, delay: 0.15 + i * 0.06 }}
+                      >
+                        {l}
+                      </motion.span>
                     ))}
                   </pre>
-                </div>
-                <div className="step step-answer">
+                </motion.div>
+                <motion.div
+                  className="step step-answer"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ ...spring, delay: 0.14 }}
+                >
                   <span className="step-n mono">03 · YOU GET THE WHY</span>
                   <div className="mini-bars" aria-hidden="true">
                     {e.chart.map((v, i) => (
-                      <span
+                      <motion.span
                         key={i}
-                        style={{ height: `${v}%` }}
+                        initial={{ height: "0%" }}
+                        animate={{ height: `${v}%` }}
+                        transition={{ ...spring, delay: 0.25 + i * 0.04 }}
                         data-low={e.id === "drop" && i > 4}
                       />
                     ))}
                   </div>
                   <strong>{e.result}</strong>
                   <p>{e.reason}</p>
-                </div>
+                </motion.div>
               </TabsContent>
             ))}
           </Tabs>
@@ -462,15 +536,25 @@ export default function Plumb() {
             </p>
           </div>
           <div className="bento">
-            <article className="tile tile-funnel" data-reveal>
+            <motion.article className="tile tile-funnel" data-reveal {...lift}>
               <div className="tile-visual funnel" aria-hidden="true">
                 {[100, 72, 51, 38].map((v, i) => (
-                  <span key={v} style={{ width: `${v}%` }}>
+                  <motion.span
+                    key={v}
+                    initial={{ width: "18%" }}
+                    whileInView={{ width: `${v}%` }}
+                    viewport={{ once: true, margin: "-10% 0px" }}
+                    transition={{
+                      ...spring,
+                      duration: 0.9,
+                      delay: 0.15 + i * 0.1,
+                    }}
+                  >
                     <em className="mono">
                       {["Signed up", "Invited", "First chart", "Shared"][i]}
                     </em>
                     <b className="mono">{v}%</b>
-                  </span>
+                  </motion.span>
                 ))}
               </div>
               <h3>Funnels that point at the leak</h3>
@@ -478,18 +562,29 @@ export default function Plumb() {
                 Plumb marks the step losing the most people and the segment it’s
                 losing them from.
               </p>
-            </article>
-            <article className="tile tile-retention" data-reveal>
+            </motion.article>
+            <motion.article
+              className="tile tile-retention"
+              data-reveal
+              {...lift}
+            >
               <div className="tile-visual heat" aria-hidden="true">
                 {Array.from({ length: 36 }, (_, i) => {
                   const row = Math.floor(i / 6);
                   const col = i % 6;
                   const hidden = col > 5 - row;
                   return (
-                    <span
+                    <motion.span
                       key={i}
-                      style={{
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      whileInView={{
                         opacity: hidden ? 0 : 1 - col * 0.14 - row * 0.03,
+                        scale: 1,
+                      }}
+                      viewport={{ once: true }}
+                      transition={{
+                        ...spring,
+                        delay: 0.1 + (row + col) * 0.035,
                       }}
                     />
                   );
@@ -500,8 +595,8 @@ export default function Plumb() {
                 Weekly curves for every plan, channel or feature, built from a
                 sentence.
               </p>
-            </article>
-            <article className="tile tile-watch" data-reveal>
+            </motion.article>
+            <motion.article className="tile tile-watch" data-reveal {...lift}>
               <div className="tile-visual alert" aria-hidden="true">
                 <span className="alert-icon">
                   <Bell size={14} />
@@ -518,17 +613,28 @@ export default function Plumb() {
                 Plumb keeps an eye on the metrics you care about and tells you
                 what moved them.
               </p>
-            </article>
-            <article className="tile tile-exp" data-reveal>
+            </motion.article>
+            <motion.article className="tile tile-exp" data-reveal {...lift}>
               <div className="tile-visual exp" aria-hidden="true">
                 <div>
                   <span className="mono">CONTROL</span>
-                  <i style={{ width: "58%" }} />
+                  <motion.i
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "58%" }}
+                    viewport={{ once: true }}
+                    transition={{ ...spring, duration: 0.9, delay: 0.2 }}
+                  />
                   <b>41.2%</b>
                 </div>
                 <div>
                   <span className="mono">VARIANT</span>
-                  <i style={{ width: "66%" }} data-win="true" />
+                  <motion.i
+                    data-win="true"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "66%" }}
+                    viewport={{ once: true }}
+                    transition={{ ...spring, duration: 0.9, delay: 0.32 }}
+                  />
                   <b>46.0%</b>
                 </div>
               </div>
@@ -537,8 +643,8 @@ export default function Plumb() {
                 Results arrive with confidence, sample size and the metrics that
                 must not get worse.
               </p>
-            </article>
-            <article className="tile tile-share" data-reveal>
+            </motion.article>
+            <motion.article className="tile tile-share" data-reveal {...lift}>
               <div className="tile-visual share" aria-hidden="true">
                 <span className="share-chip">#growth</span>
                 <span className="share-card">
@@ -550,7 +656,7 @@ export default function Plumb() {
                 Pin a question to a board or send it to a channel. It refreshes
                 itself every morning.
               </p>
-            </article>
+            </motion.article>
           </div>
         </section>
 
@@ -573,13 +679,22 @@ export default function Plumb() {
                 body: "Small samples and weak signals are flagged, with a suggestion for what to measure next.",
               },
             ].map(({ icon: Icon, title, body }) => (
-              <div key={title} className="trust-item" data-reveal>
-                <span className="trust-icon">
+              <motion.div
+                key={title}
+                className="trust-item"
+                data-reveal
+                whileHover="hover"
+              >
+                <motion.span
+                  className="trust-icon"
+                  variants={{ hover: { y: -3, rotate: -6 } }}
+                  transition={spring}
+                >
                   <Icon size={17} />
-                </span>
+                </motion.span>
                 <h3>{title}</h3>
                 <p>{body}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
@@ -598,14 +713,18 @@ export default function Plumb() {
                 aria-pressed={!yearly}
                 onClick={() => setYearly(false)}
               >
-                Monthly
+                {!yearly && <Pill id="billing-pill" />}
+                <span>Monthly</span>
               </button>
               <button
                 type="button"
                 aria-pressed={yearly}
                 onClick={() => setYearly(true)}
               >
-                Yearly <em>−17%</em>
+                {yearly && <Pill id="billing-pill" />}
+                <span>
+                  Yearly <em>−17%</em>
+                </span>
               </button>
             </div>
           </div>
@@ -613,11 +732,12 @@ export default function Plumb() {
             {plans.map((p) => {
               const price = yearly ? p.yearly : p.monthly;
               return (
-                <article
+                <motion.article
                   className="plan"
                   key={p.name}
                   data-featured={p.featured}
                   data-reveal
+                  {...lift}
                 >
                   <header>
                     <h3>{p.name}</h3>
@@ -629,9 +749,25 @@ export default function Plumb() {
                       <strong>Custom</strong>
                     ) : (
                       <>
-                        <strong>${price}</strong>
+                        <strong>
+                          <NumberFlow
+                            value={price}
+                            format={{
+                              style: "currency",
+                              currency: "USD",
+                              maximumFractionDigits: 0,
+                            }}
+                            locales="en-US"
+                          />
+                        </strong>
                         <span>
-                          / month{price > 0 && yearly ? ", billed yearly" : ""}
+                          / month
+                          <motion.span
+                            initial={false}
+                            animate={{ opacity: price > 0 && yearly ? 1 : 0 }}
+                          >
+                            , billed yearly
+                          </motion.span>
                         </span>
                       </>
                     )}
@@ -649,7 +785,7 @@ export default function Plumb() {
                   >
                     {p.cta}
                   </Button>
-                </article>
+                </motion.article>
               );
             })}
           </div>
@@ -694,7 +830,18 @@ export default function Plumb() {
 
         <section className="closing" data-reveal>
           <span className="closing-mark" aria-hidden="true">
-            <Logo />
+            <motion.span
+              className="swing"
+              animate={{ rotate: [-9, 9] }}
+              transition={{
+                duration: 1.6,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "mirror",
+              }}
+            >
+              <Logo />
+            </motion.span>
           </span>
           <h2>Your first answer is five minutes away.</h2>
           <p>Paste one snippet, ask one question. Plumb does the digging.</p>
@@ -738,6 +885,6 @@ export default function Plumb() {
         </div>
       </footer>
       <Toaster />
-    </>
+    </MotionConfig>
   );
 }

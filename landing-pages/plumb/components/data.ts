@@ -32,7 +32,14 @@ export const ranges: Record<
     current: number[];
     previous: number[];
     drop: number;
-    kpis: { label: string; value: string; delta: string; good: boolean }[];
+    kpis: {
+      label: string;
+      value: number;
+      unit: "" | "%";
+      delta: number;
+      deltaUnit: "%" | " pts";
+      good: boolean;
+    }[];
   }
 > = {
   "7d": {
@@ -41,19 +48,9 @@ export const ranges: Record<
     previous: [44.9, 45.2, 44.6, 45.4, 45.1, 44.8, 45.3],
     drop: 6,
     kpis: [
-      {
-        label: "Daily active teams",
-        value: "2,814",
-        delta: "3.1%",
-        good: true,
-      },
-      {
-        label: "Onboarding completion",
-        value: "40.6%",
-        delta: "5.6 pts",
-        good: false,
-      },
-      { label: "Free → paid", value: "8.7%", delta: "0.2 pts", good: true },
+      { label: "Daily active teams", value: 2814, unit: "", delta: 3.1, deltaUnit: "%", good: true },
+      { label: "Onboarding completion", value: 40.6, unit: "%", delta: 5.6, deltaUnit: " pts", good: false },
+      { label: "Free → paid", value: 8.7, unit: "%", delta: 0.2, deltaUnit: " pts", good: true },
     ],
   },
   "30d": {
@@ -62,19 +59,9 @@ export const ranges: Record<
     previous: wave(30, 44.2, 0.5, 4),
     drop: 27,
     kpis: [
-      {
-        label: "Daily active teams",
-        value: "2,690",
-        delta: "6.4%",
-        good: true,
-      },
-      {
-        label: "Onboarding completion",
-        value: "42.1%",
-        delta: "1.9 pts",
-        good: false,
-      },
-      { label: "Free → paid", value: "8.9%", delta: "0.6 pts", good: true },
+      { label: "Daily active teams", value: 2690, unit: "", delta: 6.4, deltaUnit: "%", good: true },
+      { label: "Onboarding completion", value: 42.1, unit: "%", delta: 1.9, deltaUnit: " pts", good: false },
+      { label: "Free → paid", value: 8.9, unit: "%", delta: 0.6, deltaUnit: " pts", good: true },
     ],
   },
   "90d": {
@@ -83,19 +70,9 @@ export const ranges: Record<
     previous: wave(13, 42.6, 0.6, 6),
     drop: 12,
     kpis: [
-      {
-        label: "Daily active teams",
-        value: "2,402",
-        delta: "18.0%",
-        good: true,
-      },
-      {
-        label: "Onboarding completion",
-        value: "44.0%",
-        delta: "1.4 pts",
-        good: true,
-      },
-      { label: "Free → paid", value: "8.2%", delta: "0.9 pts", good: true },
+      { label: "Daily active teams", value: 2402, unit: "", delta: 18.0, deltaUnit: "%", good: true },
+      { label: "Onboarding completion", value: 44.0, unit: "%", delta: 1.4, deltaUnit: " pts", good: true },
+      { label: "Free → paid", value: 8.2, unit: "%", delta: 0.9, deltaUnit: " pts", good: true },
     ],
   },
 };
@@ -108,7 +85,7 @@ export type Answer = {
   detail:
     | { kind: "cause"; segment: string; impact: string; reason: string }
     | { kind: "bars"; rows: { label: string; value: number; note: string }[] }
-    | { kind: "stat"; value: string; note: string };
+    | { kind: "stat"; value: number; note: string };
 };
 
 export const answers: Answer[] = [
@@ -146,7 +123,7 @@ export const answers: Answer[] = [
     focus: "none",
     detail: {
       kind: "stat",
-      value: "+4.8 pts",
+      value: 4.8,
       note: "95% confidence · 3,940 teams · 21 days",
     },
   },

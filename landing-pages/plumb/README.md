@@ -19,6 +19,6 @@ All data, customers, workspaces and prices are invented. No account is created, 
 
 ## Credits
 
-Inter and JetBrains Mono: SIL Open Font License, included alongside the font files. Icons: Lucide (ISC). Original SVG logo and illustrations. Code: MIT.
+Inter and JetBrains Mono: SIL Open Font License, included alongside the font files. Icons: Lucide (ISC). Animated numbers: [NumberFlow](https://number-flow.barvian.me) (MIT). Micro-interactions: [Motion](https://motion.dev) (MIT). Original SVG logo and illustrations. Code: MIT.
 
 Designed and developed by [LN](https://lndev.me). [Support the project](https://lndev.mychariow.shop/prd_3cu1s0).

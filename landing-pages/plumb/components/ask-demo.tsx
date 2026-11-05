@@ -23,6 +23,9 @@ import {
   Users,
 } from "lucide-react";
 import { toast } from "sonner";
+import NumberFlow from "@number-flow/react";
+import { AnimatePresence, motion } from "motion/react";
+import { CountIn, Pill, spring } from "./motion-kit";
 import { answers, ranges, type Answer, type Range } from "./data";
 import { Logo } from "./logo";
 
@@ -112,7 +115,12 @@ function Chart({ range, focus }: { range: Range; focus: boolean }) {
         aria-hidden="true"
       />
       <span className="drop-tag mono" style={{ right: 0 }} aria-hidden="true">
-        −{(data.current[data.drop - 1] - data.current[last]).toFixed(1)} pts
+        <NumberFlow
+          value={-(data.current[data.drop - 1] - data.current[last])}
+          format={{ minimumFractionDigits: 1, maximumFractionDigits: 1 }}
+          suffix=" pts"
+          locales="en-US"
+        />
       </span>
       <div className="chart-labels" aria-hidden="true">
         {data.labels.map((l, i) =>
@@ -149,20 +157,34 @@ function Detail({ answer }: { answer: Answer }) {
   if (d.kind === "bars")
     return (
       <div className="answer-card">
-        {d.rows.map((r) => (
+        {d.rows.map((r, i) => (
           <div className="bar-row" key={r.label}>
             <span>{r.label}</span>
             <span className="bar-track">
-              <span style={{ width: `${(r.value / 14) * 100}%` }} />
+              <motion.span
+                initial={{ width: 0 }}
+                animate={{ width: `${(r.value / 14) * 100}%` }}
+                transition={{ ...spring, delay: 0.1 + i * 0.08 }}
+              />
             </span>
-            <strong>{r.value}%</strong>
+            <CountIn
+              className="bar-value"
+              value={r.value / 100}
+              format={{ style: "percent", maximumFractionDigits: 1 }}
+            />
           </div>
         ))}
       </div>
     );
   return (
     <div className="answer-card answer-stat">
-      <strong>{d.value}</strong>
+      <CountIn
+        className="stat-value"
+        value={d.value}
+        prefix="+"
+        suffix=" pts"
+        format={{ minimumFractionDigits: 1, maximumFractionDigits: 1 }}
+      />
       <span className="mono">{d.note}</span>
     </div>
   );
@@ -322,7 +344,8 @@ export function AskDemo() {
                 aria-pressed={range === r}
                 onClick={() => setRange(r)}
               >
-                {r}
+                {range === r && <Pill id="range-pill" />}
+                <span>{r}</span>
               </button>
             ))}
           </div>
@@ -339,9 +362,39 @@ export function AskDemo() {
           {kpis.map((k) => (
             <div className="kpi" key={k.label}>
               <span>{k.label}</span>
-              <strong>{k.value}</strong>
+              <strong>
+                <NumberFlow
+                  value={k.unit === "%" ? k.value / 100 : k.value}
+                  format={
+                    k.unit === "%"
+                      ? {
+                          style: "percent",
+                          minimumFractionDigits: 1,
+                          maximumFractionDigits: 1,
+                        }
+                      : { maximumFractionDigits: 0 }
+                  }
+                  locales="en-US"
+                />
+              </strong>
               <em data-good={k.good}>
-                {k.good ? "↑" : "↓"} {k.delta}
+                <motion.i
+                  key={`${k.label}-${k.good}`}
+                  initial={{ y: k.good ? 4 : -4, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={spring}
+                >
+                  {k.good ? "↑" : "↓"}
+                </motion.i>{" "}
+                <NumberFlow
+                  value={k.delta}
+                  suffix={k.deltaUnit}
+                  format={{
+                    minimumFractionDigits: 1,
+                    maximumFractionDigits: 1,
+                  }}
+                  locales="en-US"
+                />
               </em>
             </div>
           ))}
@@ -371,18 +424,37 @@ export function AskDemo() {
           {messages.map((m, i) => {
             if (m.role === "user")
               return (
-                <p className="bubble-user" key={i}>
+                <motion.p
+                  className="bubble-user"
+                  key={i}
+                  initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={spring}
+                  style={{ originX: 1, originY: 1 }}
+                >
                   {m.text}
-                </p>
+                </motion.p>
               );
             if (m.role === "note")
               return (
-                <p className="bubble-note" key={i}>
+                <motion.p
+                  className="bubble-note"
+                  key={i}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={spring}
+                >
                   {m.text}
-                </p>
+                </motion.p>
               );
             return (
-              <div className="bubble-plumb" key={i}>
+              <motion.div
+                className="bubble-plumb"
+                key={i}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={spring}
+              >
                 {m.shown === 0 ? (
                   <span className="thinking" aria-label="Plumb is thinking">
                     <i />
@@ -395,25 +467,52 @@ export function AskDemo() {
                     {!m.done && <span className="caret" />}
                   </p>
                 )}
-                {m.done && <Detail answer={m.answer} />}
+                {m.done && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6, filter: "blur(4px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={spring}
+                  >
+                    <Detail answer={m.answer} />
+                  </motion.div>
+                )}
                 {m.done && (
                   <span className="query-tag mono">
                     1 query · 0.8 s · sample data
                   </span>
                 )}
-              </div>
+              </motion.div>
             );
           })}
         </div>
-        {!busy && messages.length > 0 && (
-          <div className="chips" aria-label="Suggested questions">
-            {suggestions.map((s) => (
-              <button type="button" key={s.id} onClick={() => ask(s)}>
-                {s.question}
-              </button>
-            ))}
-          </div>
-        )}
+        <AnimatePresence>
+          {!busy && messages.length > 0 && (
+            <motion.div
+              className="chips"
+              aria-label="Suggested questions"
+              initial="hidden"
+              animate="show"
+              exit={{ opacity: 0, transition: { duration: 0.12 } }}
+              variants={{ show: { transition: { staggerChildren: 0.05 } } }}
+            >
+              {suggestions.map((s) => (
+                <motion.button
+                  type="button"
+                  key={s.id}
+                  onClick={() => ask(s)}
+                  variants={{
+                    hidden: { opacity: 0, y: 6 },
+                    show: { opacity: 1, y: 0, transition: spring },
+                  }}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                >
+                  {s.question}
+                </motion.button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
         <form className="chat-input" onSubmit={submit}>
           <label htmlFor="ask-input" className="sr-only">
             Ask a question
@@ -425,13 +524,14 @@ export function AskDemo() {
             placeholder="Ask about any metric…"
             autoComplete="off"
           />
-          <button
+          <motion.button
+            whileTap={{ scale: 0.9 }}
             type="submit"
             aria-label="Send question"
             disabled={!draft.trim() || busy}
           >
             <ArrowUp size={15} />
-          </button>
+          </motion.button>
         </form>
       </section>
     </div>

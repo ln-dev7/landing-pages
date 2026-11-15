@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import NumberFlow from "@number-flow/react";
-import { AnimatePresence, MotionConfig, motion } from "motion/react";
+import { AnimatePresence, MotionConfig, motion, useReducedMotion } from "motion/react";
 import { CountIn, spring } from "./motion-kit";
 import { Halftone, formatCountdown, useCountdown } from "./halftone";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -427,6 +427,39 @@ function SupportDesk() {
 
 /* ---------- Page ---------- */
 
+
+/* Header: the CTA rolls through the six app tiles, the logo heart beats in their colours. */
+function useAppCycle(ms = 2200) {
+  const [i, setI] = useState(0);
+  const reduce = useReducedMotion();
+  useEffect(() => {
+    if (reduce) return;
+    const id = window.setInterval(() => setI((v) => (v + 1) % apps.length), ms);
+    return () => window.clearInterval(id);
+  }, [ms, reduce]);
+  return i;
+}
+
+function TileSlot({ i }: { i: number }) {
+  const a = apps[i];
+  return (
+    <span className="tile-slot" aria-hidden="true">
+      <AnimatePresence initial={false} mode="popLayout">
+        <motion.span
+          key={a.id}
+          className="tile-slot-in"
+          initial={{ y: "115%", rotate: -12 }}
+          animate={{ y: "0%", rotate: 0 }}
+          exit={{ y: "-115%", rotate: 12 }}
+          transition={{ type: "spring", stiffness: 420, damping: 30 }}
+        >
+          <AppTile id={a.id} size={14} />
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
 export default function Kudo() {
   const [app, setApp] = useState<AppId>("tips");
   const [menu, setMenu] = useState(false);
@@ -435,6 +468,7 @@ export default function Kudo() {
   const clock = useCountdown(OFFER);
   const current = apps.find((a) => a.id === app)!;
   useReveal();
+  const cycle = useAppCycle();
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
@@ -453,8 +487,11 @@ export default function Kudo() {
       <a className="skip" href="#main">Skip to content</a>
       <header className="nav" data-scrolled={scrolled}>
         <div className="nav-pill">
-          <a href="#top" className="brand" aria-label="Kudo home">
-            <Logo /> Kudo
+          <a href="#top" className="brand" aria-label="Kudo home" style={{ ["--logo-heart" as string]: apps[cycle].tile[0] }}>
+            <span key={cycle} className="beat">
+              <Logo />
+            </span>{" "}
+            Kudo
           </a>
           <nav aria-label="Main" className="nav-links">
             <div className="apps-wrap">
@@ -476,8 +513,8 @@ export default function Kudo() {
             <Menu size={20} />
           </button>
         </div>
-        <button type="button" className="button nav-cta" onClick={() => pick("tips")}>
-          Explore apps
+        <button type="button" className="button nav-cta" onClick={() => pick(apps[cycle].id)}>
+          <TileSlot i={cycle} /> Explore apps
         </button>
       </header>
       <MobileMenu open={menu} onClose={() => setMenu(false)} onPick={pick} />
@@ -635,7 +672,7 @@ export default function Kudo() {
                       </span>
                       <span className="u-meta">
                         <span>
-                          {a.name} <AppTile id={u.app} size={12} />
+                          {a.name} <AppTile id={u.app} size={14} />
                         </span>
                         <small>{u.date}</small>
                       </span>

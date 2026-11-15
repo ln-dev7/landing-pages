@@ -1502,7 +1502,7 @@ li[data-state="done"] .lesson-mark {
   gap: 2px;
   min-width: 170px;
 }
-.u-meta span {
+.u-meta > span {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -2719,5 +2719,45 @@ li[data-done="true"] .flow-dot {
 @media (prefers-reduced-motion: reduce) {
   .dot-in {
     animation-duration: 0.01s;
+  }
+}
+
+/* ---- Header animation ---- */
+.brand .beat {
+  display: inline-flex;
+}
+.brand .logo-mark path {
+  transition: fill 0.5s;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: heart-beat 0.9s var(--ease) both;
+}
+@keyframes heart-beat {
+  0% { transform: scale(1); }
+  18% { transform: scale(1.22); }
+  34% { transform: scale(0.94); }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+.tile-slot {
+  position: relative;
+  display: inline-grid;
+  width: 26px;
+  height: 26px;
+  margin-left: -4px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.tile-slot-in {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+}
+.tile-slot .app-tile {
+  box-shadow: inset 0 1px 0 #ffffff80, inset 0 -2px 0 #00000014;
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand .logo-mark path {
+    animation: none;
   }
 }

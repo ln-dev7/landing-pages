@@ -425,8 +425,9 @@ export default function Mesa() {
 
       <main id="main">
         <section className="hero" id="top">
-          <div className="hero-card">
+          <div className="hero-card hero-split">
             <Halftone className="hero-dust" colors={["#241d17", "#33291f"]} cell={5} dot="round" seed={4} scale={26} shape="corners" bias={-0.1} />
+            <Halftone className="hero-rise" colors={["#3a1a10", "#8a3318", "#e8582f", "#ffb08c"]} cell={6} dot="round" seed={9} shape="rise" scale={18} bias={-0.08} />
             <div className="hero-copy">
               <p className="offer rise" style={{ animationDelay: ".1s" }}>
                 <span>
@@ -447,17 +448,25 @@ export default function Mesa() {
               <p className="rise hero-sub" style={{ animationDelay: ".45s" }}>
                 Six apps for independent restaurants: bookings, a waitlist, pickup orders, a stamp card, reviews and gift cards. They share one guest list.
               </p>
-              <div className="rise" style={{ animationDelay: ".55s" }}>
+              <div className="hero-actions rise" style={{ animationDelay: ".55s" }}>
                 <button type="button" className="button button-light button-lg" onClick={() => pick("book")}>
                   See the apps
                 </button>
+                <p className="hero-rating">
+                  4.8 <Stars /> from 5,120 imaginary restaurants
+                </p>
               </div>
-              <p className="rise hero-rating" style={{ animationDelay: ".65s" }}>
-                4.8 <Stars /> from 5,120 imaginary restaurants
-              </p>
+              <ul className="hero-apps rise" style={{ animationDelay: ".65s" }} aria-label="The six apps">
+                {apps.map((a) => (
+                  <li key={a.id}>
+                    <button type="button" onClick={() => pick(a.id)} aria-label={a.name} title={a.name}>
+                      <AppTile id={a.id} size={16} />
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="hero-shot rise" style={{ animationDelay: ".75s" }}>
-              <Halftone className="hero-edges" colors={["#3a1a10", "#8a3318", "#e8582f", "#ffb08c"]} cell={6} dot="round" seed={9} shape="left" scale={20} bias={-0.04} />
               <Halftone className="hero-edges hero-edges-r" colors={["#3a2a08", "#8c5f0a", "#e8a012", "#ffd98a"]} cell={6} dot="round" seed={13} shape="right" scale={20} bias={-0.04} />
               <div className="hero-window">
                 <Floor />
@@ -468,7 +477,8 @@ export default function Mesa() {
 
         <div className="rail">
           <section className="showcase" id="apps" aria-labelledby="apps-title">
-            <div className="show-head" data-reveal>
+            <div className="show-head show-split" data-reveal>
+              <p className="show-kicker mono">The menu · six apps</p>
               <h2 id="apps-title">
                 <span key={app} className="dot-in show-name">
                   <AppTile id={app} size={30} /> {current.name}
@@ -478,19 +488,24 @@ export default function Mesa() {
                   {current.goal}
                 </span>
               </h2>
+              <p className="show-note">Pick an app from the menu on the left. Every one of them writes to the same guest list.</p>
             </div>
             <div className="stage" style={{ background: current.wash }}>
               <Halftone key={app} className="stage-bg" colors={current.inks} cell={7} dot="round" seed={apps.findIndex((a) => a.id === app) + 5} scale={22} bias={-0.1} />
-              <Tabs value={app} onValueChange={(v) => setApp(v as AppId)} className="panel" data-reveal>
+              <Tabs value={app} onValueChange={(v) => setApp(v as AppId)} orientation="vertical" className="panel panel-menu" data-reveal>
                 <TabsList className="app-tabs" style={{ ["--tab-wash" as string]: current.wash }}>
                   {apps.map((a) => (
                     <TabsTrigger key={a.id} value={a.id} className="app-tab" style={{ ["--tab-c" as string]: a.tile[1] }}>
                       <AppTile id={a.id} size={18} />
-                      <span>{a.name}</span>
+                      <span className="app-tab-txt">
+                        <span>{a.name}</span>
+                        <small>{a.goal}</small>
+                      </span>
+                      <span className="app-tab-time mono">{a.time}</span>
                     </TabsTrigger>
                   ))}
                 </TabsList>
-                <div key={app} className="dot-in">
+                <div key={app} className="dot-in panel-site">
                   <Site app={app} />
                 </div>
               </Tabs>
@@ -584,23 +599,24 @@ export default function Mesa() {
                 See all updates <ArrowRight size={14} />
               </button>
             </div>
-            <ul className="update-list">
-              {updates.map((u) => {
+            <ul className="tickets">
+              {updates.map((u, i) => {
                 const a = apps.find((x) => x.id === u.app)!;
                 return (
-                  <li key={u.t} data-reveal>
+                  <li key={u.t} data-reveal style={{ ["--tk" as string]: a.wash, ["--tk-c" as string]: a.tile[1] }}>
                     <button type="button" onClick={() => pick(u.app)}>
-                      <span className="u-main">
-                        <b>{u.t}</b>
-                        <span>{u.d}</span>
+                      <span className="tk-top mono">
+                        <span>#{String(41 + i).padStart(3, "0")}</span>
+                        <span>{u.date}</span>
                       </span>
-                      <span className="u-meta">
-                        <span>
-                          {a.name} <AppTile id={u.app} size={12} />
-                        </span>
-                        <small>{u.date}</small>
+                      <span className="tk-app">
+                        <AppTile id={u.app} size={14} /> {a.name}
                       </span>
-                      <ArrowUpRight size={18} className="u-arrow" />
+                      <b>{u.t}</b>
+                      <span className="tk-d">{u.d}</span>
+                      <span className="tk-go">
+                        Open in the demo <ArrowUpRight size={15} />
+                      </span>
                     </button>
                   </li>
                 );
@@ -657,7 +673,7 @@ export default function Mesa() {
             </Accordion>
           </section>
 
-          <section className="closing" data-reveal>
+          <section className="closing closing-split" data-reveal>
             <h2>
               The room is full.
               <span className="grad-dark"> The phone stays quiet.</span>

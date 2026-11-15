@@ -9,3 +9,8 @@ The collection previews are real browser captures. Plumb and Redline were captur
 The existing repository ignore rules intentionally keep the videos directory local. Only the presentation images and this provenance note are versioned.
 
 Both production builds and TypeScript compilation passed. Each video has 870 frames, reaches the footer, passes a full decode check, and contains no broken images or browser errors. Collection checks cover desktop/mobile, both new images, all 18 cards, the Editorial filter and the index/gallery toggle.
+
+Kudo, Mesa, Keel, Folio, Hum, Wren, Murmur, Knot, Nightshift and Tally were captured on November 15, 2026 from their local production builds (Node 22, Next.js 16).
+
+- Covers: `kudo.jpg`, `mesa.jpg`, `keel.jpg`, `folio.jpg`, `hum.jpg`, `wren.jpg`, `murmur.jpg`, `knot.jpg`, `nightshift.jpg`, `tally.jpg`, 1920 × 1080 JPEG. Each page is captured at 1600 × 900 after its intro animations, then placed in the same rounded browser frame, public URL, shadow and neutral background as the other showcases.
+- Collection checks cover all 28 cards, the three filters (10 immersive, 9 editorial, 9 playful), the featured stack and a 390 px mobile view without horizontal overflow.

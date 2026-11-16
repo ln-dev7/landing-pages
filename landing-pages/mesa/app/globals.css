@@ -3074,7 +3074,7 @@ body {
 }
 .hero-split .hero-shot {
   max-width: none;
-  margin: 0;
+  margin: 0 48px 0 0;
 }
 .hero-split .hero-edges.hero-edges-r {
   top: -220px;
@@ -3084,13 +3084,10 @@ body {
   height: calc(100% + 220px);
 }
 .hero-split .hero-window {
-  border-radius: 22px 0 0 0;
-  border-right: 0;
-  padding: 10px 0 0 10px;
+  padding: 10px 10px 0;
 }
 .hero-split .floor {
-  border-radius: 14px 0 0 0;
-  padding-right: 28px;
+  border-radius: 14px 14px 0 0;
 }
 @media (max-width: 1279px) {
   .hero-split .floor-grid {
@@ -3332,6 +3329,9 @@ body {
   }
   .hero-split .floor-grid .tbl:nth-child(n + 9) {
     display: flex;
+  }
+  .hero-split .hero-shot {
+    margin-right: 0;
   }
   .hero-rise {
     width: 70%;

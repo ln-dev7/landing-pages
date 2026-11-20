@@ -16,6 +16,18 @@ const mono = localFont({
 });
 
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Plumb — Ask your metrics why they moved.",
   description:
     "An imagined product analytics tool you can question in plain words. Plumb returns the chart, the segment behind it and the cause.",

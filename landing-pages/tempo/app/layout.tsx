@@ -12,6 +12,18 @@ const body = localFont({
   display: "swap",
 });
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Tempo — Make room for a better move.",
   description:
     "A sculptural journey through sixty-four squares. Explore chess, one thoughtful move at a time.",

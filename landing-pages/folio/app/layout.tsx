@@ -25,6 +25,18 @@ const mono = localFont({
 });
 
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Folio — Write it down once. Find it forever.",
   description:
     "An imagined workspace for docs, wikis and project tables, with an assistant that has read every page.",

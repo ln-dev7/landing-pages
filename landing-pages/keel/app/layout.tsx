@@ -18,6 +18,18 @@ const mono = localFont({
 });
 
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Keel — Keep every project moving forward.",
   description:
     "An imagined issue tracker for product teams. Plan cycles, triage bugs and watch the roadmap move, all from the keyboard.",

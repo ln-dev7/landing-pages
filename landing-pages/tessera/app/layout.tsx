@@ -12,6 +12,18 @@ const body = localFont({
   display: "swap",
 });
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Tessera — Spaces for the wandering mind",
   description:
     "Eight impossible spaces. One unhurried journey. An interactive architectural study.",

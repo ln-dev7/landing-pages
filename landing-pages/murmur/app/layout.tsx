@@ -26,6 +26,18 @@ const sans = localFont({
 });
 
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Murmur — Every call, answered.",
   description:
     "An imagined AI receptionist for small businesses. Murmur picks up in under a second, books the appointment and texts you the summary.",

@@ -15,6 +15,18 @@ const mono = localFont({
   display: "swap",
 });
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Hollow — The house at No. 13",
   description:
     "Some houses remember you. An original, immersive Halloween journey through a house that is expecting one more guest.",

@@ -16,6 +16,18 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Redline — The reviewer who reads every line.",
   description:
     "An imagined AI code reviewer. Redline studies each change in context, points to what will fail in production and writes the patch you can accept in one click.",

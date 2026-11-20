@@ -1,9 +1,12 @@
-# Landing pages
+# Shadcn Pages Free
 
-Open-source landing pages with a personality of their own.
-Built with Next.js, Tailwind CSS and fully customized shadcn/ui.
+Open-source **shadcn/ui landing page templates** with a personality of their own.
+Built with Next.js, Tailwind CSS and fully customized shadcn/ui. Free to use, MIT licensed.
 
 **[Explore the collection →](https://lp.lndev.me)**
+
+Shadcn Pages Free is the open-source side of **Shadcn Pages**: every template is a complete Next.js project you can
+clone, run and make your own.
 
 ## Projects
 

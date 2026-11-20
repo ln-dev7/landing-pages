@@ -47,6 +47,18 @@ const hanken = localFont({
 const title = "Aparté: a gift in hand, a note read softly, in Larch Harbor"
 
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   metadataBase: new URL(site.url),
   title: { default: title, template: "%s | Aparté" },
   description: site.description,

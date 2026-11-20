@@ -16,6 +16,18 @@ const mono = localFont({
 });
 
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Tally — Receipts in. Taxes sorted.",
   description:
     "An imagined AI bookkeeper for freelancers. Tally reads every receipt, matches it to your bank, books it and tells you what to set aside for tax.",

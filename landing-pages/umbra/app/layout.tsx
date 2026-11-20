@@ -23,6 +23,16 @@ const description =
   "An imaginary observatory at the edge of light. Explore an immersive, interactive eclipse through an original three-dimensional world.";
 
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  publisher: "Shadcn Pages",
   metadataBase: new URL(origin),
   title: "UMBRA — At the edge of light",
   description,

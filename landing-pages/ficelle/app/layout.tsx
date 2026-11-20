@@ -39,6 +39,18 @@ const plexMono = localFont({
 })
 
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   metadataBase: new URL(site.url),
   title: {
     default: "Ficelle, gifts tied up and delivered in Bellmere",

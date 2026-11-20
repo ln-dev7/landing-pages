@@ -14,6 +14,18 @@ const manrope = localFont({
   weight: "200 800",
 });
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Sundaze — A little salt does a lot of good.",
   description:
     "Good waves. Better company. An imagined surf club for your first wave, your next one, and everything in between.",

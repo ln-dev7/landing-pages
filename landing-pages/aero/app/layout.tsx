@@ -17,6 +17,18 @@ const manrope = localFont({
 const origin =
   process.env.NEXT_PUBLIC_SITE_URL || "https://aero-lndev.vercel.app";
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   metadataBase: new URL(origin),
   title: "AÉRO — A little paper. A lot of elsewhere.",
   description:

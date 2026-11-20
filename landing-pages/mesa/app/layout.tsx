@@ -18,6 +18,18 @@ const mono = localFont({
 });
 
 export const metadata: Metadata = {
+  keywords: [
+    "shadcn pages",
+    "shadcn templates",
+    "shadcn/ui landing page",
+    "Next.js landing page template",
+    "Tailwind CSS landing page",
+    "free landing page template",
+    "open source",
+  ],
+  authors: [{ name: "LN", url: "https://lndev.me" }],
+  creator: "LN",
+  publisher: "Shadcn Pages",
   title: "Mesa — Fill every table, every single night.",
   description:
     "An imagined suite of six apps for independent restaurants: bookings, a waitlist, pickup orders, a stamp card, reviews and gift cards.",

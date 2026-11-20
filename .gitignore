@@ -6,3 +6,5 @@ node_modules/
 # showcase videos stay local
 www/showcase/**/*.mp4
 www/showcase/videos/
+# pro templates live in their own repository
+/pro/

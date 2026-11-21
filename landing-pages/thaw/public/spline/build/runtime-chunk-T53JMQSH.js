@@ -1,0 +1,1 @@
+var a,n,t=!1,e=new Promise(n=>{a=n}),i=!1;function o(){if(t=!0,!i)return n||(n=async function(){let n=await import("./opentype.js");a(n),i=!0}())}export{t as a,e as b,o as c};

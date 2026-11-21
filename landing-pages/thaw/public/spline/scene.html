@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preload" href="/spline/scene.bin" as="fetch" crossorigin="anonymous">
+		<style>
+			html, body {
+				height: 100%;
+			}
+			body {
+				margin: 0;
+				overflow: hidden;
+				background: #e3e3e3;
+				-webkit-user-select: none;
+				user-select: none;
+			}
+			canvas {
+				outline: none;
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas3d"></canvas>
+		<script type="module">
+			import { Application } from '/spline/build/runtime.js';
+			
+			const canvas = document.getElementById('canvas3d');
+			const app = new Application(canvas, { 
+				htmlContentMode: 'inline',
+				wasmPath: '/spline/build/'
+			});
+
+			let currentRotY = 0;
+			let targetRotY = 0;
+			let currentCamDist = 360;
+			let targetCamDist = 360;
+			let currentOffsetY = 244;
+			let targetOffsetY = 244;
+
+			function animateRotation() {
+				if (window.splineApp && window.splineApp._camera) {
+					currentRotY += (targetRotY - currentRotY) * 0.1;
+					currentCamDist += (targetCamDist - currentCamDist) * 0.08;
+					currentOffsetY += (targetOffsetY - currentOffsetY) * 0.08;
+					
+					const cam = window.splineApp._camera;
+					cam.position.x = Math.sin(currentRotY) * currentCamDist;
+					cam.position.z = Math.cos(currentRotY) * currentCamDist;
+					cam.position.y = currentOffsetY + 10;
+					cam.lookAt(0, currentOffsetY, 0);
+
+					const bgLogo = window.splineApp.findObjectByName("logo");
+					if (bgLogo && bgLogo.visible) bgLogo.visible = false;
+				}
+				requestAnimationFrame(animateRotation);
+			}
+			requestAnimationFrame(animateRotation);
+
+			window.addEventListener("message", (event) => {
+				if (!event.data) return;
+				if (event.data.type === "UPDATE_ROTATION") {
+					if (typeof event.data.rotationY === "number") {
+						targetRotY = event.data.rotationY;
+					}
+					if (typeof event.data.cameraDist === "number") {
+						targetCamDist = event.data.cameraDist;
+					}
+					if (typeof event.data.offsetY === "number") {
+						targetOffsetY = event.data.offsetY;
+					}
+				}
+			});
+
+			const onLoad = () => {
+				window.splineApp = app;
+				try {
+					const logo = app.findObjectByName("logo") || app.findObjectById("7ffe1ee3-96a9-41c8-8f7c-914ccebe69e3");
+					if (logo) logo.visible = false;
+					for (let i = 0; i <= 10; i++) {
+						const sh = app.findObjectByName("Shape " + i);
+						if (sh) sh.visible = false;
+					}
+					window.parent.postMessage({ type: "SPLINE_LOADED" }, "*");
+				} catch(e) {}
+			};
+
+			// Instant binary streaming directly from local cache
+			fetch('/spline/scene.bin')
+				.then(res => res.arrayBuffer())
+				.then(buffer => app.start(new Uint8Array(buffer)))
+				.then(onLoad)
+				.catch(err => console.error("Error loading spline binary:", err));
+		</script>
+	</body>
+</html>

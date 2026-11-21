@@ -1,0 +1,1 @@
+function t(){let t=new Float32Array(128),a=0;for(let e=0;e<80;++e){if(e%5==0)continue;let n=2.39996323*e,c=Math.sqrt(e)/Math.sqrt(80);t[a++]=c*Math.cos(n),t[a++]=c*Math.sin(n)}return t}function a(t,a,e){return{focusDistance:e?t/2e3:(t+992)/2e3,focusRange:Math.max(a/2e3,1e-6)}}var e={focusDistance:0,focalLength:200,bokehScale:1};export{t as a,a as b,e as c};

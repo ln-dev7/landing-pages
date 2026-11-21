@@ -1,0 +1,1 @@
+import{h as n}from"./runtime-chunk-XFBVWQLO.js";function e(o){if(o.component){let t=o.component.instances.indexOf(o);t>=0&&o.component.instances.splice(t,1);for(let t of o.children)n.is(t)&&e(t)}}export{e as a};

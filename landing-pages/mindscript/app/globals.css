@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --bg-page: #f8faf8;
+  --text-primary: #121c17;
+  --text-muted: #526359;
+  --brand-forest: #163327;
+  --brand-forest-hover: #1c3d30;
+  --brand-sage: #9fb39c;
+  --brand-sage-light: #d8e2d6;
+  --glass-bg: rgba(255, 255, 255, 0.14);
+  --glass-border: rgba(255, 255, 255, 0.28);
+}
+
+@theme inline {
+  --font-sans: var(--font-hanken), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-bodoni), "Didot", "Bodoni 72", Georgia, serif;
+  
+  --color-page: var(--bg-page);
+  --color-primary-text: var(--text-primary);
+  --color-muted-text: var(--text-muted);
+  --color-forest: var(--brand-forest);
+  --color-forest-hover: var(--brand-forest-hover);
+  --color-sage: var(--brand-sage);
+  --color-sage-light: var(--brand-sage-light);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,35 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --bg-page: #0a110d;
+  --text-primary: #ffffff;
+  --text-muted: #9aa89d;
+  --brand-lime: #d7f943;
+  --brand-lime-hover: #c4e537;
+}
+
+@theme inline {
+  --font-sans: var(--font-figtree), system-ui, -apple-system, sans-serif;
+  --color-page: var(--bg-page);
+  --color-lime: var(--brand-lime);
+  --color-lime-hover: var(--brand-lime-hover);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

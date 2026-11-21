@@ -1,0 +1,1 @@
+function e(e){let t=!1;return e.scene.objects.traverse((e,r)=>{("Mesh"===r.type&&"UIGeometry"===r.geometry.type||"Page"===r.type&&void 0!==r.uiFrame)&&(t=!0)}),t}export{e as a};

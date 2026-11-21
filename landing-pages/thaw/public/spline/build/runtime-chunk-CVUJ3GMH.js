@@ -1,0 +1,1 @@
+var r=new Set;function e(e){r.add(e)}function n(e){if(0===r.size)return;let n=Array.from(r);r.clear();for(let r of n)r.render(e)}export{e as a,n as b};

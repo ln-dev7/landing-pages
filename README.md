@@ -76,6 +76,11 @@ On Vercel, create a separate project for each site:
 
 Each project’s `vercel.json` skips builds when its folder is unchanged since its previous deployment. The first deployment always builds.
 
+## Contribute
+
+Made a landing page you want to share? Community pages live in `community/<slug>` and are listed on the site with
+their author. **One landing page per pull request.** Read [COMMUNITY.md](COMMUNITY.md) before opening one.
+
 ## Support
 
 Created by **[LN](https://lndev.me)**.

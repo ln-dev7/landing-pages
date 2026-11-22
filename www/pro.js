@@ -8,9 +8,10 @@
  *   - a "Shadcn Pages Pro" link in the footer.
  */
 window.PRO = {
-  live: false,
+  live: true,
   name: "Shadcn Pages Pro",
   url: "https://shadcnpages.dev",
+  // When the launch offer ends on the Pro site, set `launch` to the regular price (129): the strikethrough disappears.
   price: { launch: 99, regular: 129 },
   // Free pages that also exist as a complete site in Pro: free slug → Pro template slug.
   fullSites: { keel: "keel", hum: "hum", kudo: "kudo", mesa: "mesa", folio: "folio" },

@@ -95,6 +95,12 @@ Publishing a merged community page (maintainer):
 3. Add its entry at the top of `window.COMMUNITY` in `www/community.js` (the fields are documented at the top of the
    file). The page sorts, numbers and counts entries by itself, and shows an empty state while the list is empty.
 
+## Need the whole site?
+
+**[Shadcn Pages Pro](https://shadcnpages.dev)** is the paid side: complete multi-page website templates built the same
+way, with pricing, blog, changelog, docs, sign-in and legal pages designed together, light and dark, plus an AI kit to
+rebrand them. Keel, Hum, Kudo, Mesa and Folio from this collection exist there as full sites.
+
 ## Support
 
 Created by **[LN](https://lndev.me)**.

@@ -28,5 +28,6 @@ window.PRO = {
     { slug: "hum", name: "Hum", niche: "Team chat" },
     { slug: "folio", name: "Folio", niche: "Docs and wikis" },
     { slug: "kudo", name: "Kudo", niche: "Creator apps" },
+    { slug: "mesa", name: "Mesa", niche: "Restaurant apps" },
   ],
 };

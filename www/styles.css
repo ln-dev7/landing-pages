@@ -1799,3 +1799,122 @@ html[data-motion="still"] .reveal {
 .outline-star .icon {
   display: block;
 }
+
+/* ---------- Community page (/community, data in community.js) ---------- */
+.nav__center a[aria-current="page"]:after {
+  transform: scaleX(1);
+}
+.nav__center sup:empty {
+  display: none;
+}
+.community {
+  padding-top: 72px;
+}
+.section-head h1 {
+  font-size: clamp(42px, 4.2vw, 65px);
+  margin-top: 19px;
+}
+.section-head h1 em {
+  font-size: 1.1em;
+}
+.community-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-block: 1px solid var(--line);
+  padding-block: 16px;
+  margin-bottom: 38px;
+}
+.community-bar p {
+  font-size: 14px;
+  color: var(--muted);
+}
+.project__placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font: 600 clamp(48px, 8vw, 96px) / 1 Space, sans-serif;
+  letter-spacing: -0.04em;
+  color: var(--muted);
+  background: var(--panel);
+}
+.project__author {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.project__author strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+.project__author img,
+.project__avatar {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+.project__avatar {
+  display: grid;
+  place-items: center;
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.project__handle {
+  opacity: 0.7;
+}
+.project__author:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.community-empty {
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+  padding: clamp(36px, 6vw, 72px);
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--panel) 35%, transparent);
+}
+.community-empty h2 {
+  font-size: clamp(34px, 3.6vw, 52px);
+}
+.community-empty > p:not(.eyebrow) {
+  max-width: 46ch;
+  font-size: 15px;
+  color: var(--muted);
+}
+.community-noscript {
+  font-size: 14px;
+  color: var(--muted);
+}
+.community-noscript a {
+  text-decoration: underline;
+}
+@media (max-width: 640px) {
+  .community {
+    padding-top: 40px;
+  }
+  .community-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 900px) {
+  .section-head h1 {
+    font-size: 44px;
+  }
+}
+.community-empty[hidden],
+.projects[hidden] {
+  display: none;
+}

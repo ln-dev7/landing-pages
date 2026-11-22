@@ -32,4 +32,8 @@
     <image:image><image:loc>https://lp.lndev.me/showcase/aparte.jpg?v=2</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/ecrin.jpg</image:loc></image:image>
   </url>
+  <url>
+    <loc>https://lp.lndev.me/community</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
 </urlset>

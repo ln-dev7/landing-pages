@@ -57,8 +57,8 @@ See each project's README for its configuration.
 
 ## Showcase
 
-`www/` is the collection website, built with HTML, CSS and JavaScript.
-No dependencies or build step. From the repository root:
+`www/` is the collection website, built with HTML, CSS and JavaScript: the collection on `/` (`projects.js`) and the
+community pages on `/community` (`community.js`). No dependencies or build step. From the repository root:
 
 ```bash
 cd www
@@ -78,8 +78,17 @@ Each project’s `vercel.json` skips builds when its folder is unchanged since i
 
 ## Contribute
 
-Made a landing page you want to share? Community pages live in `community/<slug>` and are listed on the site with
-their author. **One landing page per pull request.** Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening one.
+Made a landing page you want to share? Community pages live in `community/<slug>` and are listed on
+[lp.lndev.me/community](https://lp.lndev.me/community) with their author. **One landing page per pull request.**
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening one.
+
+Publishing a merged community page (maintainer):
+
+1. Deploy it on Vercel: a new project with Root Directory `community/<slug>` (the domain `<slug>-community.vercel.app`
+   is the default the site expects).
+2. Add a 1600×900 screenshot as `www/showcase/community/<slug>.jpg`.
+3. Add its entry at the top of `window.COMMUNITY` in `www/community.js` (the fields are documented at the top of the
+   file). The page sorts, numbers and counts entries by itself, and shows an empty state while the list is empty.
 
 ## Support
 

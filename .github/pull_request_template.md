@@ -1,4 +1,4 @@
-<!-- Adding a landing page? Read COMMUNITY.md first. One landing page per pull request. -->
+<!-- Adding a landing page? Read CONTRIBUTING.md first. One landing page per pull request. -->
 
 ## The page
 

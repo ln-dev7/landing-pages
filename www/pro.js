@@ -24,5 +24,8 @@ window.PRO = {
     { slug: "margin", name: "Margin", niche: "AI meeting notes" },
     { slug: "waypoint", name: "Waypoint", niche: "Fleet telematics" },
     { slug: "fader", name: "Fader", niche: "Podcast studio" },
+    { slug: "keel", name: "Keel", niche: "Issue tracker" },
+    { slug: "hum", name: "Hum", niche: "Team chat" },
+    { slug: "folio", name: "Folio", niche: "Docs and wikis" },
   ],
 };

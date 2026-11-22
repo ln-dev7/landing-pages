@@ -459,10 +459,19 @@
         <nav class="nav__center" aria-label="Main">
           <a href="#work">Collection <sup>28</sup></a
           ><a href="#approach" data-nav="idea">The idea</a
-          ><a href="/community" data-nav="community" hidden>Community <sup data-community-count></sup></a>
+          ><a href="/community" data-nav="community" hidden>Community <sup data-community-count></sup></a
+          ><a href="https://shadcnpages.dev" class="nav__pro" data-nav="pro" target="_blank" rel="noopener" hidden>Pro <span aria-hidden="true"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a>
         </nav>
         <div class="nav__end">
           <a
+            class="pro-pill"
+            href="https://shadcnpages.dev"
+            data-nav="pro"
+            target="_blank"
+            rel="noopener"
+            hidden
+            >Pro</a
+          ><a
             class="sponsor"
             href="https://lndev.mychariow.shop/prd_3cu1s0"
             target="_blank"
@@ -676,6 +685,31 @@
           code your own.
         </p>
       </section>
+      <!-- Shadcn Pages Pro: filled and shown by script.js when pro.js says live: true -->
+      <section id="pro" class="pro wrap" aria-labelledby="pro-title" hidden>
+        <div class="pro__panel">
+          <div class="pro__copy reveal">
+            <p class="eyebrow">SHADCN PAGES PRO</p>
+            <h2 id="pro-title">Need the<br /><em>whole site?</em></h2>
+            <p class="pro__lede">
+              Complete multi-page templates built the same way: pricing, blog, docs, sign-in and legal pages, all
+              designed together.
+            </p>
+            <ul class="pro__points">
+              <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 12 5 5L20 6"/></svg> Every page, light and dark</li>
+              <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 12 5 5L20 6"/></svg> An AI kit to make it yours</li>
+              <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 12 5 5L20 6"/></svg> New templates included</li>
+            </ul>
+            <div class="pro__actions">
+              <a class="button button--lime" href="https://shadcnpages.dev" data-pro-link target="_blank" rel="noopener"
+                >Explore Shadcn Pages <span aria-hidden="true"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a
+              >
+              <p class="pro__price" data-pro-price></p>
+            </div>
+          </div>
+          <div class="pro__wall"></div>
+        </div>
+      </section>
       <section
         id="approach"
         class="approach wrap"
@@ -811,6 +845,7 @@ pnpm dev</code></pre>
               rel="noopener"
               >MIT License <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a
             ><a href="/community">Community</a
+            ><a href="https://shadcnpages.dev" data-footer="pro" target="_blank" rel="noopener" hidden>Shadcn Pages Pro <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a
             ><a href="#top">Back to top <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21V3m-8 8 8-8 8 8"/></svg></a>
           </nav>
           <span class="copyright">© <span data-year>2026</span></span>
@@ -820,6 +855,8 @@ pnpm dev</code></pre>
     <script src="/analytics.js" defer></script>
     <script src="projects.js?v=14" defer></script>
     <script src="community.js?v=1" defer></script>
-    <script src="script.js?v=11" defer></script>
+    <script src="pro.js?v=1" defer></script>
+    <script src="site-nav.js?v=1" defer></script>
+    <script src="script.js?v=12" defer></script>
   </body>
 </html>

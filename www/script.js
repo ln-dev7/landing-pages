@@ -28,14 +28,35 @@
       <details><summary>Behind the design</summary><div class="project__details"><p>${esc(p.description)}</p><dl><div><dt>Type</dt><dd>${esc(p.type)}</dd></div><div><dt>Stack</dt><dd>${esc(p.stack.join(" · "))}</dd></div><div><dt>Palette</dt><dd class="swatches" aria-label="Color palette">${p.colors.map((c) => `<i style="--c:${esc(c)}" title="${esc(c)}"></i>`).join("")}</dd></div></dl></div></details></article>`;
   });
   document.querySelector("#projects").innerHTML = cards.join("");
-  // Header: "Community" takes the place of "The idea" once community.js holds at least one page.
-  const community = (window.COMMUNITY || []).filter(
-    (p) => p && p.slug && p.name && p.author && p.author.name && p.author.github,
-  );
-  if (community.length) {
-    document.querySelector('[data-nav="idea"]').hidden = true;
-    document.querySelector('[data-nav="community"]').hidden = false;
-    document.querySelector("[data-community-count]").textContent = pad(community.length);
+  // Shadcn Pages Pro (pro.js): stays hidden until PRO.live is true.
+  const pro = window.PRO && window.PRO.live ? window.PRO : null;
+  if (pro) {
+    const section = document.querySelector("#pro");
+    section.querySelectorAll("[data-pro-link]").forEach((a) => (a.href = pro.url));
+    const price = section.querySelector("[data-pro-price]");
+    price.innerHTML = `From <strong>$${esc(pro.price.launch)}</strong>${pro.price.regular > pro.price.launch ? ` <s>$${esc(pro.price.regular)}</s>` : ""} · one payment, lifetime updates`;
+    const tile = (t) =>
+      `<a class="pro__tile" href="${esc(pro.url)}/templates/${esc(t.slug)}" ${ext}><img src="showcase/pro/${esc(t.slug)}.webp" alt="${esc(t.name)}, ${esc(t.niche)}" width="960" height="600" loading="lazy" decoding="async"><span><strong>${esc(t.name)}</strong>${esc(t.niche)}</span></a>`;
+    const half = Math.ceil(pro.showcase.length / 2);
+    const rows = [pro.showcase.slice(0, half), pro.showcase.slice(half)];
+    section.querySelector(".pro__wall").innerHTML = rows
+      .map(
+        (row, i) =>
+          // The row is drawn twice for a seamless loop; the copy is hidden from assistive tech and the keyboard.
+          `<div class="pro__row${i ? " pro__row--reverse" : ""}"><div class="pro__track">${row.map(tile).join("")}<span class="pro__copy-row" aria-hidden="true">${row.map((t) => tile(t).replace("<a ", '<a tabindex="-1" ')).join("")}</span></div></div>`,
+      )
+      .join("");
+    section.hidden = false;
+    document.querySelectorAll(".project").forEach((card) => {
+      const target = pro.fullSites[card.id];
+      if (!target) return;
+      card
+        .querySelector(".project__body")
+        .insertAdjacentHTML(
+          "beforeend",
+          `<a class="project__pro" href="${esc(pro.url)}/templates/${esc(target)}" ${ext}><span>PRO</span>The full site, every page <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a>`,
+        );
+    });
   }
   document
     .querySelectorAll("[data-year]")

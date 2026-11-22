@@ -26,13 +26,7 @@
 
   const list = document.querySelector("#community-projects");
   const empty = document.querySelector("#community-empty");
-  const count = document.querySelector("[data-community-count]");
-  // Header: "Community" takes the place of "The idea" once there is at least one page.
-  if (entries.length) {
-    document.querySelector('[data-nav="idea"]').hidden = true;
-    document.querySelector('[data-nav="community"]').hidden = false;
-    if (count) count.textContent = pad(entries.length);
-  }
+  // Header links (Community, Pro, The idea) are handled by site-nav.js.
 
   if (!entries.length) {
     list.hidden = true;

@@ -58,7 +58,12 @@ See each project's README for its configuration.
 ## Showcase
 
 `www/` is the collection website, built with HTML, CSS and JavaScript: the collection on `/` (`projects.js`) and the
-community pages on `/community` (`community.js`). No dependencies or build step. From the repository root:
+community pages on `/community` (`community.js`). No dependencies or build step.
+
+Shadcn Pages Pro is prepared but hidden: `www/pro.js` holds `live: false`. Setting it to `true` adds a Pro link to the
+header (in place of "The idea") and the footer, the "Need the whole site?" section after the collection (covers in
+`www/showcase/pro/`), and a "The full site, every page" link on the free pages listed in `fullSites`. The header logic
+for Community and Pro lives in `www/site-nav.js`. From the repository root:
 
 ```bash
 cd www

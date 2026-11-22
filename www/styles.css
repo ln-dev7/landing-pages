@@ -1804,6 +1804,9 @@ html[data-motion="still"] .reveal {
 .nav__center a[aria-current="page"]:after {
   transform: scaleX(1);
 }
+.nav__center a[hidden] {
+  display: none;
+}
 .nav__center sup:empty {
   display: none;
 }

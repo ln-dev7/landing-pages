@@ -28,6 +28,15 @@
       <details><summary>Behind the design</summary><div class="project__details"><p>${esc(p.description)}</p><dl><div><dt>Type</dt><dd>${esc(p.type)}</dd></div><div><dt>Stack</dt><dd>${esc(p.stack.join(" · "))}</dd></div><div><dt>Palette</dt><dd class="swatches" aria-label="Color palette">${p.colors.map((c) => `<i style="--c:${esc(c)}" title="${esc(c)}"></i>`).join("")}</dd></div></dl></div></details></article>`;
   });
   document.querySelector("#projects").innerHTML = cards.join("");
+  // Header: "Community" takes the place of "The idea" once community.js holds at least one page.
+  const community = (window.COMMUNITY || []).filter(
+    (p) => p && p.slug && p.name && p.author && p.author.name && p.author.github,
+  );
+  if (community.length) {
+    document.querySelector('[data-nav="idea"]').hidden = true;
+    document.querySelector('[data-nav="community"]').hidden = false;
+    document.querySelector("[data-community-count]").textContent = pad(community.length);
+  }
   document
     .querySelectorAll("[data-year]")
     .forEach((el) => (el.textContent = new Date().getFullYear()));

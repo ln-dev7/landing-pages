@@ -18,6 +18,7 @@ window.PRO = {
   // Covers shown in the section, in this order (960×600 images in showcase/pro/).
   showcase: [
     { slug: "conduit", name: "Conduit", niche: "AI agents for operations" },
+    { slug: "halcyon", name: "Halcyon", niche: "Uptime monitoring" },
     { slug: "ostler", name: "Ostler", niche: "Business banking" },
     { slug: "plotline", name: "Plotline", niche: "Product analytics" },
     { slug: "bloop", name: "Bloop", niche: "Form builder" },

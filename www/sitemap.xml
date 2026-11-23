@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://lp.lndev.me/</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <image:image><image:loc>https://lp.lndev.me/showcase/kudo.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/mesa.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/keel.jpg</image:loc></image:image>
@@ -31,6 +31,10 @@
     <image:image><image:loc>https://lp.lndev.me/showcase/umbra.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/aparte.jpg?v=2</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/ecrin.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://lp.lndev.me/collection</loc>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://lp.lndev.me/community</loc>

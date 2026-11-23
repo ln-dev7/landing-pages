@@ -458,3 +458,15 @@ window.PROJECTS = [
     short: "A gift box with a cinematic entrance.",
   },
 ];
+
+/*
+ * Immersive pages come after the others everywhere (the collection, the hero rotation, the numbering):
+ * the editorial and playful pages are the ones put forward. The order above is kept inside each part.
+ */
+window.PROJECTS.sort((a, b) => (a.group === "immersive") - (b.group === "immersive"));
+
+/*
+ * The four pages shown on the home page, in this order. Everything else lives on /collection.
+ * Change a slug here to change the selection.
+ */
+window.FEATURED = ["kudo", "keel", "knot", "offcut"];

@@ -63,7 +63,7 @@
       crossorigin
     />
     <link rel="preload" as="image" href="showcase/plumb.jpg" />
-    <link rel="stylesheet" href="styles.css?v=11" />
+    <link rel="stylesheet" href="styles.css?v=12" />
     <script>
       try {
         var t = localStorage.getItem("theme");
@@ -72,382 +72,386 @@
       } catch (e) {}
     </script>
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://lp.lndev.me/#website",
+      "name": "Shadcn Pages Free",
+      "alternateName": [
+        "Shadcn Pages",
+        "shadcnpages",
+        "Landing Pages by LN"
+      ],
+      "url": "https://lp.lndev.me/",
+      "description": "Shadcn Pages Free: 28 open-source shadcn/ui landing page templates with a personality. Built with Next.js, Tailwind CSS and fully customized shadcn/ui.",
+      "keywords": "shadcn pages, shadcnpages, shadcn templates, shadcn/ui templates, shadcn landing page, shadcn landing page template, free shadcn templates, next.js landing page templates, tailwind css landing page, open source landing pages, react landing page templates",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Shadcn Pages",
+        "url": "https://shadcnpages.dev/"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "LN",
+        "url": "https://lndev.me"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://lp.lndev.me/#collection",
+      "name": "Shadcn Pages Free — open-source shadcn/ui landing page templates",
+      "url": "https://lp.lndev.me/",
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 28,
+        "itemListElement": [
           {
-            "@type": "WebSite",
-            "@id": "https://lp.lndev.me/#website",
-            "name": "Shadcn Pages Free",
-            "alternateName": ["Shadcn Pages", "shadcnpages", "Landing Pages by LN"],
-            "url": "https://lp.lndev.me/",
-            "description": "Shadcn Pages Free: 28 open-source shadcn/ui landing page templates with a personality. Built with Next.js, Tailwind CSS and fully customized shadcn/ui.",
-            "keywords": "shadcn pages, shadcnpages, shadcn templates, shadcn/ui templates, shadcn landing page, shadcn landing page template, free shadcn templates, next.js landing page templates, tailwind css landing page, open source landing pages, react landing page templates",
-            "isPartOf": {
-              "@type": "WebSite",
-              "name": "Shadcn Pages",
-              "url": "https://shadcnpages.dev/"
-            },
-            "author": {
-              "@type": "Person",
-              "name": "LN",
-              "url": "https://lndev.me"
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Kudo",
+              "url": "https://kudo-lndev.vercel.app",
+              "description": "A suite of six small apps for creators: tips, memberships, a shop, paid calls, courses and letters. Dithered dot patterns change colour with every app, and each tab opens a working demo.",
+              "image": "https://lp.lndev.me/showcase/kudo.jpg",
+              "license": "https://opensource.org/licenses/MIT"
             }
           },
           {
-            "@type": "CollectionPage",
-            "@id": "https://lp.lndev.me/#collection",
-            "name": "Shadcn Pages Free — open-source shadcn/ui landing page templates",
-            "url": "https://lp.lndev.me/",
-            "mainEntity": {
-              "@type": "ItemList",
-              "numberOfItems": 28,
-              "itemListElement": [
-                {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Kudo",
-                    "url": "https://kudo-lndev.vercel.app",
-                    "description": "A suite of six small apps for creators: tips, memberships, a shop, paid calls, courses and letters. Dithered dot patterns change colour with every app, and each tab opens a working demo.",
-                    "image": "https://lp.lndev.me/showcase/kudo.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 2,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Mesa",
-                    "url": "https://mesa-lndev.vercel.app",
-                    "description": "A suite of apps for independent restaurants: reservations, a waitlist, pickup orders, a stamp card, reviews and gift cards. Seat guests on a live floor plan, stamp a card and answer a review, all in halftone dots.",
-                    "image": "https://lp.lndev.me/showcase/mesa.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 3,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Keel",
-                    "url": "https://keel-lndev.vercel.app",
-                    "description": "An issue tracker for teams that ship every week. Plan cycles, triage bugs and watch the roadmap lanes move, with a working workspace, board and command menu.",
-                    "image": "https://lp.lndev.me/showcase/keel.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 4,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Folio",
-                    "url": "https://folio-lndev.vercel.app",
-                    "description": "A shared notebook for docs, wikis and project tables, with an assistant that has read every page. The hero is a document you can edit, and the demo has blocks, databases and Ask Folio.",
-                    "image": "https://lp.lndev.me/showcase/folio.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 5,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Hum",
-                    "url": "https://hum-lndev.vercel.app",
-                    "description": "A team chat with channels, threads, huddles and a catch-up that reads the backlog for you. The headline arrives as chat messages over sound rings, and the demo answers back.",
-                    "image": "https://lp.lndev.me/showcase/hum.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 6,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Wren",
-                    "url": "https://wren-lndev.vercel.app",
-                    "description": "An AI thinking partner that reads what you share, asks before it assumes and writes alongside you. A typed headline over contour lines, and a demo with styles, projects and draft versions.",
-                    "image": "https://lp.lndev.me/showcase/wren.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 7,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Murmur",
-                    "url": "https://murmur-lndev.vercel.app",
-                    "description": "An AI receptionist for small businesses on a near-black night with a breathing gradient orb. Pick an incoming call and watch it unfold: transcript, actions and a summary for the owner.",
-                    "image": "https://lp.lndev.me/showcase/murmur.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 8,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Knot",
-                    "url": "https://knot-lndev.vercel.app",
-                    "description": "An AI automation tool in neo-brutalist style: ink borders, hard shadows and loud flat colour. Type a sentence, watch the steps build on a canvas, drag them around and run a test.",
-                    "image": "https://lp.lndev.me/showcase/knot.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 9,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Nightshift",
-                    "url": "https://nightshift-lndev.vercel.app",
-                    "description": "An AI on-call engineer styled as a glowing amber CRT terminal. An incident starts on its own, Nightshift investigates with ASCII graphs, and you answer or type your own commands.",
-                    "image": "https://lp.lndev.me/showcase/nightshift.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 10,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Tally",
-                    "url": "https://tally-lndev.vercel.app",
-                    "description": "An AI bookkeeper for freelancers on a Swiss grid with black rules and one signal orange. Drag a receipt onto the scanner and watch it get read, categorised and matched to the bank.",
-                    "image": "https://lp.lndev.me/showcase/tally.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 11,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Plumb",
-                    "url": "https://plumb-lndev.vercel.app",
-                    "description": "A product analytics tool you question in plain words. Ask why a metric moved and get the chart, the segment behind it and the cause, live on sample data.",
-                    "image": "https://lp.lndev.me/showcase/plumb.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 12,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Redline",
-                    "url": "https://redline-lndev.vercel.app",
-                    "description": "An AI code reviewer that leaves its notes in the margin. Watch a live review, commit the suggested fixes and compare how much it says at each strictness level.",
-                    "image": "https://lp.lndev.me/showcase/redline.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 13,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Hollow",
-                    "url": "https://hollow-lndev.vercel.app",
-                    "description": "Cross the threshold of a haunted house. Follow its doors, portraits and ghostly residents into a moonlit conservatory, then take an illustrated invitation home.",
-                    "image": "https://lp.lndev.me/showcase/hollow.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 14,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Sundaze",
-                    "url": "https://sundaze-lndev.vercel.app",
-                    "description": "A sunny surf club with ocean photography, click ripples and animated typography. Read a wave, explore the kit, test your timing and collect stamps in an interactive surf school.",
-                    "image": "https://lp.lndev.me/showcase/sundaze.jpg?v=2",
-                    "license": "https://github.com/ln-dev7/landing-pages/tree/master/landing-pages/sundaze#third-party-effects"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 15,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Veillée",
-                    "url": "https://veillee-lndev.vercel.app",
-                    "description": "One village. One night. Choose a target, uncover a secret and cast your vote as a sculpted Werewolf story unfolds over ten immersive chapters.",
-                    "image": "https://lp.lndev.me/showcase/veillee.png",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 16,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Tempo",
-                    "url": "https://tempo-lndev.vercel.app",
-                    "description": "A light, sculptural journey through sixty-four squares. Explore six sculptural piece studies and replay a complete grandmaster game on the 3D board, at your own pace.",
-                    "image": "https://lp.lndev.me/showcase/tempo.png",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 17,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Tessera",
-                    "url": "https://tessera-lndev.vercel.app",
-                    "description": "Eight original architectural studies connected by a continuous 3D promenade. Follow the light, explore impossible spaces and keep an illustrated postcard.",
-                    "image": "https://lp.lndev.me/showcase/tessera.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 18,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Oddpress",
-                    "url": "https://oddpress-lndev.vercel.app",
-                    "description": "A paper playground with original posters, expressive typography and an interactive ink lab. Layer two colours, embrace misregistration and download your own print.",
-                    "image": "https://lp.lndev.me/showcase/oddpress.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 19,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Fallow",
-                    "url": "https://fallow-lndev.vercel.app",
-                    "description": "A small world that grows with you. Wake a seed, follow its roots and choose what it becomes across four connected, scroll-driven 3D chapters.",
-                    "image": "https://lp.lndev.me/showcase/fallow.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 20,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Offcut",
-                    "url": "https://offcut-lndev.vercel.app",
-                    "description": "A furniture studio built around beautiful leftovers. Explore sculptural wooden objects, turn them in 3D and find a finish that feels like you.",
-                    "image": "https://lp.lndev.me/showcase/offcut.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 21,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Crux",
-                    "url": "https://crux-lndev.vercel.app",
-                    "description": "An independent climbing club with oversized italic headlines, acid-lime accents and chalky textures. Explore the circuit board, filter the weekly sessions and plan a first climb, with scroll reveals and playful sticker interactions.",
-                    "image": "https://lp.lndev.me/showcase/crux.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 22,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Marée",
-                    "url": "https://maree-lndev.vercel.app",
-                    "description": "A quiet escape on the Cornish coast: sea green, linen tones and ocean photography. Move between warmth, cool water and rest, choose a ritual and take a breathing pause, with gentle parallax and ripples at your fingertips.",
-                    "image": "https://lp.lndev.me/showcase/maree.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 23,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Aéro",
-                    "url": "https://aero-lndev.vercel.app",
-                    "description": "A sheet of paper becomes a small adventure. Follow its folds, fly through sculptural air currents and send your own paper plane into the blue.",
-                    "image": "https://lp.lndev.me/showcase/aero.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 24,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Passeline",
-                    "url": "https://passeline-lndev.vercel.app",
-                    "description": "One gift crosses a hand-drawn SVG town: the quay, the streetcar, the town hall, the Ferris wheel. A gold dotted line links the scenes, and the page turns from morning to night as you scroll.",
-                    "image": "https://lp.lndev.me/showcase/passeline.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 25,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Ficelle",
-                    "url": "https://ficelle-lndev.vercel.app",
-                    "description": "The whole site is a parcel being packed and opened: kraft paper with generated fibers, shipping labels, teal ink stamps, a gold ribbon and receipts. The delivery picker prints a live receipt as you choose.",
-                    "image": "https://lp.lndev.me/showcase/ficelle.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 26,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Umbra",
-                    "url": "https://umbra-lndev.vercel.app",
-                    "description": "Step into an imaginary observatory. Unfold an optical instrument, cross a field of stars and compose a celestial alignment of your own.",
-                    "image": "https://lp.lndev.me/showcase/umbra.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 27,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Aparté",
-                    "url": "https://aparte-lndev.vercel.app",
-                    "description": "A magazine on the web: Bodoni headlines, running heads and folios, a drop cap, pull quotes and an address book with dot leaders. One warm, grainy treatment for every photo.",
-                    "image": "https://lp.lndev.me/showcase/aparte.jpg?v=2",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 28,
-                  "item": {
-                    "@type": "CreativeWork",
-                    "name": "Écrin",
-                    "url": "https://ecrin-lndev.vercel.app",
-                    "description": "A dark, cinematic launch site lit in gold. A CSS 3D box spins and lifts its lid as you scroll, with springy micro-interactions on top: magnetic buttons, rolling totals, a light that follows the cursor.",
-                    "image": "https://lp.lndev.me/showcase/ecrin.jpg",
-                    "license": "https://opensource.org/licenses/MIT"
-                  }
-                }
-              ]
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Mesa",
+              "url": "https://mesa-lndev.vercel.app",
+              "description": "A suite of apps for independent restaurants: reservations, a waitlist, pickup orders, a stamp card, reviews and gift cards. Seat guests on a live floor plan, stamp a card and answer a review, all in halftone dots.",
+              "image": "https://lp.lndev.me/showcase/mesa.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Keel",
+              "url": "https://keel-lndev.vercel.app",
+              "description": "An issue tracker for teams that ship every week. Plan cycles, triage bugs and watch the roadmap lanes move, with a working workspace, board and command menu.",
+              "image": "https://lp.lndev.me/showcase/keel.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Folio",
+              "url": "https://folio-lndev.vercel.app",
+              "description": "A shared notebook for docs, wikis and project tables, with an assistant that has read every page. The hero is a document you can edit, and the demo has blocks, databases and Ask Folio.",
+              "image": "https://lp.lndev.me/showcase/folio.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Hum",
+              "url": "https://hum-lndev.vercel.app",
+              "description": "A team chat with channels, threads, huddles and a catch-up that reads the backlog for you. The headline arrives as chat messages over sound rings, and the demo answers back.",
+              "image": "https://lp.lndev.me/showcase/hum.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Wren",
+              "url": "https://wren-lndev.vercel.app",
+              "description": "An AI thinking partner that reads what you share, asks before it assumes and writes alongside you. A typed headline over contour lines, and a demo with styles, projects and draft versions.",
+              "image": "https://lp.lndev.me/showcase/wren.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Knot",
+              "url": "https://knot-lndev.vercel.app",
+              "description": "An AI automation tool in neo-brutalist style: ink borders, hard shadows and loud flat colour. Type a sentence, watch the steps build on a canvas, drag them around and run a test.",
+              "image": "https://lp.lndev.me/showcase/knot.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Tally",
+              "url": "https://tally-lndev.vercel.app",
+              "description": "An AI bookkeeper for freelancers on a Swiss grid with black rules and one signal orange. Drag a receipt onto the scanner and watch it get read, categorised and matched to the bank.",
+              "image": "https://lp.lndev.me/showcase/tally.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Plumb",
+              "url": "https://plumb-lndev.vercel.app",
+              "description": "A product analytics tool you question in plain words. Ask why a metric moved and get the chart, the segment behind it and the cause, live on sample data.",
+              "image": "https://lp.lndev.me/showcase/plumb.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Redline",
+              "url": "https://redline-lndev.vercel.app",
+              "description": "An AI code reviewer that leaves its notes in the margin. Watch a live review, commit the suggested fixes and compare how much it says at each strictness level.",
+              "image": "https://lp.lndev.me/showcase/redline.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Sundaze",
+              "url": "https://sundaze-lndev.vercel.app",
+              "description": "A sunny surf club with ocean photography, click ripples and animated typography. Read a wave, explore the kit, test your timing and collect stamps in an interactive surf school.",
+              "image": "https://lp.lndev.me/showcase/sundaze.jpg?v=2",
+              "license": "https://github.com/ln-dev7/landing-pages/tree/master/landing-pages/sundaze#third-party-effects"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 12,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Oddpress",
+              "url": "https://oddpress-lndev.vercel.app",
+              "description": "A paper playground with original posters, expressive typography and an interactive ink lab. Layer two colours, embrace misregistration and download your own print.",
+              "image": "https://lp.lndev.me/showcase/oddpress.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 13,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Offcut",
+              "url": "https://offcut-lndev.vercel.app",
+              "description": "A furniture studio built around beautiful leftovers. Explore sculptural wooden objects, turn them in 3D and find a finish that feels like you.",
+              "image": "https://lp.lndev.me/showcase/offcut.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 14,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Crux",
+              "url": "https://crux-lndev.vercel.app",
+              "description": "An independent climbing club with oversized italic headlines, acid-lime accents and chalky textures. Explore the circuit board, filter the weekly sessions and plan a first climb, with scroll reveals and playful sticker interactions.",
+              "image": "https://lp.lndev.me/showcase/crux.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 15,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Marée",
+              "url": "https://maree-lndev.vercel.app",
+              "description": "A quiet escape on the Cornish coast: sea green, linen tones and ocean photography. Move between warmth, cool water and rest, choose a ritual and take a breathing pause, with gentle parallax and ripples at your fingertips.",
+              "image": "https://lp.lndev.me/showcase/maree.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 16,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Passeline",
+              "url": "https://passeline-lndev.vercel.app",
+              "description": "One gift crosses a hand-drawn SVG town: the quay, the streetcar, the town hall, the Ferris wheel. A gold dotted line links the scenes, and the page turns from morning to night as you scroll.",
+              "image": "https://lp.lndev.me/showcase/passeline.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 17,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Ficelle",
+              "url": "https://ficelle-lndev.vercel.app",
+              "description": "The whole site is a parcel being packed and opened: kraft paper with generated fibers, shipping labels, teal ink stamps, a gold ribbon and receipts. The delivery picker prints a live receipt as you choose.",
+              "image": "https://lp.lndev.me/showcase/ficelle.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 18,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Aparté",
+              "url": "https://aparte-lndev.vercel.app",
+              "description": "A magazine on the web: Bodoni headlines, running heads and folios, a drop cap, pull quotes and an address book with dot leaders. One warm, grainy treatment for every photo.",
+              "image": "https://lp.lndev.me/showcase/aparte.jpg?v=2",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 19,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Murmur",
+              "url": "https://murmur-lndev.vercel.app",
+              "description": "An AI receptionist for small businesses on a near-black night with a breathing gradient orb. Pick an incoming call and watch it unfold: transcript, actions and a summary for the owner.",
+              "image": "https://lp.lndev.me/showcase/murmur.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 20,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Nightshift",
+              "url": "https://nightshift-lndev.vercel.app",
+              "description": "An AI on-call engineer styled as a glowing amber CRT terminal. An incident starts on its own, Nightshift investigates with ASCII graphs, and you answer or type your own commands.",
+              "image": "https://lp.lndev.me/showcase/nightshift.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 21,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Hollow",
+              "url": "https://hollow-lndev.vercel.app",
+              "description": "Cross the threshold of a haunted house. Follow its doors, portraits and ghostly residents into a moonlit conservatory, then take an illustrated invitation home.",
+              "image": "https://lp.lndev.me/showcase/hollow.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 22,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Veillée",
+              "url": "https://veillee-lndev.vercel.app",
+              "description": "One village. One night. Choose a target, uncover a secret and cast your vote as a sculpted Werewolf story unfolds over ten immersive chapters.",
+              "image": "https://lp.lndev.me/showcase/veillee.png",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 23,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Tempo",
+              "url": "https://tempo-lndev.vercel.app",
+              "description": "A light, sculptural journey through sixty-four squares. Explore six sculptural piece studies and replay a complete grandmaster game on the 3D board, at your own pace.",
+              "image": "https://lp.lndev.me/showcase/tempo.png",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 24,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Tessera",
+              "url": "https://tessera-lndev.vercel.app",
+              "description": "Eight original architectural studies connected by a continuous 3D promenade. Follow the light, explore impossible spaces and keep an illustrated postcard.",
+              "image": "https://lp.lndev.me/showcase/tessera.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 25,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Fallow",
+              "url": "https://fallow-lndev.vercel.app",
+              "description": "A small world that grows with you. Wake a seed, follow its roots and choose what it becomes across four connected, scroll-driven 3D chapters.",
+              "image": "https://lp.lndev.me/showcase/fallow.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 26,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Aéro",
+              "url": "https://aero-lndev.vercel.app",
+              "description": "A sheet of paper becomes a small adventure. Follow its folds, fly through sculptural air currents and send your own paper plane into the blue.",
+              "image": "https://lp.lndev.me/showcase/aero.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 27,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Umbra",
+              "url": "https://umbra-lndev.vercel.app",
+              "description": "Step into an imaginary observatory. Unfold an optical instrument, cross a field of stars and compose a celestial alignment of your own.",
+              "image": "https://lp.lndev.me/showcase/umbra.jpg",
+              "license": "https://opensource.org/licenses/MIT"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 28,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Écrin",
+              "url": "https://ecrin-lndev.vercel.app",
+              "description": "A dark, cinematic launch site lit in gold. A CSS 3D box spins and lifts its lid as you scroll, with springy micro-interactions on top: magnetic buttons, rolling totals, a light that follows the cursor.",
+              "image": "https://lp.lndev.me/showcase/ecrin.jpg",
+              "license": "https://opensource.org/licenses/MIT"
             }
           }
         ]
       }
+    }
+  ]
+}
     </script>
   </head>
   <body>
-    <a class="skip" href="#work">Skip to the collection</a>
+    <a class="skip" href="#work">Skip to the selection</a>
     <header class="nav">
       <div class="wrap nav__inner">
         <a class="brand" href="#top" aria-label="Landing Pages, home"
@@ -457,7 +461,7 @@
           ></a
         >
         <nav class="nav__center" aria-label="Main">
-          <a href="#work">Collection <sup>28</sup></a
+          <a href="/collection">Collection <sup>28</sup></a
           ><a href="#approach" data-nav="idea">The idea</a
           ><a href="/community" data-nav="community" hidden>Community <sup data-community-count></sup></a
           ><a href="https://shadcnpages.dev" class="nav__pro" data-nav="pro" target="_blank" rel="noopener" hidden>Pro <span aria-hidden="true"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a>
@@ -517,7 +521,7 @@
           <span class="annotation">a different kind of starting point <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 5 14 14M5 19h14V5"/></svg></span>
           <a
             class="feature-card"
-            href="#kudo"
+            href="/collection#kudo"
             data-feature-position="front"
             aria-label="Explore Kudo"
           >
@@ -536,7 +540,7 @@
           </a>
           <a
             class="feature-card"
-            href="#mesa"
+            href="/collection#mesa"
             data-feature-position="next"
             aria-label="Explore Mesa"
             aria-hidden="true"
@@ -558,7 +562,7 @@
           </a>
           <a
             class="feature-card"
-            href="#keel"
+            href="/collection#keel"
             data-feature-position="back"
             aria-label="Explore Keel"
             aria-hidden="true"
@@ -619,71 +623,32 @@
       <section id="work" class="work wrap" aria-labelledby="work-title">
         <header class="section-head reveal">
           <div>
-            <p class="eyebrow">01 / THE COLLECTION</p>
+            <p class="eyebrow">01 / A SELECTION</p>
             <h2 id="work-title">Pick your <em>personality.</em></h2>
           </div>
           <p>
-            From a quiet coastal escape<br />to a world that grows as you
-            scroll.
+            From a tracker built for the keyboard<br />to an atelier that
+            smells of warm wood.
           </p>
         </header>
-        <div class="collection-tools">
-          <div
-            class="filters"
-            role="group"
-            aria-label="Filter by art direction"
-          >
-            <button type="button" data-filter="all" aria-pressed="true">
-              All <span>28</span></button
-            ><button type="button" data-filter="immersive" aria-pressed="false">
-              Immersive <span>10</span></button
-            ><button type="button" data-filter="editorial" aria-pressed="false">
-              Editorial <span>09</span></button
-            ><button type="button" data-filter="playful" aria-pressed="false">
-              Playful <span>09</span>
-            </button>
-          </div>
-          <button class="view-toggle" type="button" aria-pressed="false">
-            <span aria-hidden="true">☷</span> Index view
-          </button>
-        </div>
-        <p id="filter-status" class="sr-only" role="status">28 projects</p>
-        <div id="projects" class="projects">
+        <div id="projects" class="projects" data-featured>
           <noscript
             ><ul class="fallback"><li id="kudo"><a href="https://kudo-lndev.vercel.app">Kudo</a></li>
-<li id="mesa"><a href="https://mesa-lndev.vercel.app">Mesa</a></li>
 <li id="keel"><a href="https://keel-lndev.vercel.app">Keel</a></li>
-<li id="folio"><a href="https://folio-lndev.vercel.app">Folio</a></li>
-<li id="hum"><a href="https://hum-lndev.vercel.app">Hum</a></li>
-<li id="wren"><a href="https://wren-lndev.vercel.app">Wren</a></li>
-<li id="murmur"><a href="https://murmur-lndev.vercel.app">Murmur</a></li>
 <li id="knot"><a href="https://knot-lndev.vercel.app">Knot</a></li>
-<li id="nightshift"><a href="https://nightshift-lndev.vercel.app">Nightshift</a></li>
-<li id="tally"><a href="https://tally-lndev.vercel.app">Tally</a></li>
-<li id="plumb"><a href="https://plumb-lndev.vercel.app">Plumb</a></li>
-<li id="redline"><a href="https://redline-lndev.vercel.app">Redline</a></li>
-<li id="hollow"><a href="https://hollow-lndev.vercel.app">Hollow</a></li>
-<li id="sundaze"><a href="https://sundaze-lndev.vercel.app">Sundaze</a></li>
-<li id="veillee"><a href="https://veillee-lndev.vercel.app">Veillée</a></li>
-<li id="tempo"><a href="https://tempo-lndev.vercel.app">Tempo</a></li>
-<li id="tessera"><a href="https://tessera-lndev.vercel.app">Tessera</a></li>
-<li id="oddpress"><a href="https://oddpress-lndev.vercel.app">Oddpress</a></li>
-<li id="fallow"><a href="https://fallow-lndev.vercel.app">Fallow</a></li>
 <li id="offcut"><a href="https://offcut-lndev.vercel.app">Offcut</a></li>
-<li id="crux"><a href="https://crux-lndev.vercel.app">Crux</a></li>
-<li id="maree"><a href="https://maree-lndev.vercel.app">Marée</a></li>
-<li id="aero"><a href="https://aero-lndev.vercel.app">Aéro</a></li>
-<li id="passeline"><a href="https://passeline-lndev.vercel.app">Passeline</a></li>
-<li id="ficelle"><a href="https://ficelle-lndev.vercel.app">Ficelle</a></li>
-<li id="umbra"><a href="https://umbra-lndev.vercel.app">Umbra</a></li>
-<li id="aparte"><a href="https://aparte-lndev.vercel.app">Aparté</a></li>
-<li id="ecrin"><a href="https://ecrin-lndev.vercel.app">Écrin</a></li></ul></noscript
+<li><a href="/collection">The whole collection</a></li></ul></noscript
           >
         </div>
-        <p class="collection-note">
-          <span class="dot"></span> Explore the live previews. Make the source
-          code your own.
-        </p>
+        <div class="collection-more reveal">
+          <p class="collection-note">
+            <span class="dot"></span> Four to start with. The other
+            <span data-project-rest>24</span> are one click away.
+          </p>
+          <a class="button" href="/collection"
+            ><bdi>See all <data data-project-count value="28">28</data> landing pages</bdi> <span aria-hidden="true"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a
+          >
+        </div>
       </section>
       <!-- Shadcn Pages Pro: filled and shown by script.js when pro.js says live: true -->
       <section id="pro" class="pro wrap" aria-labelledby="pro-title" hidden>
@@ -853,10 +818,10 @@ pnpm dev</code></pre>
       </div>
     </footer>
     <script src="/analytics.js" defer></script>
-    <script src="projects.js?v=14" defer></script>
+    <script src="projects.js?v=15" defer></script>
     <script src="community.js?v=1" defer></script>
     <script src="pro.js?v=3" defer></script>
     <script src="site-nav.js?v=1" defer></script>
-    <script src="script.js?v=12" defer></script>
+    <script src="script.js?v=13" defer></script>
   </body>
 </html>

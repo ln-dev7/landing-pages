@@ -18,7 +18,20 @@
         })[c],
     );
   const pad = (n) => String(n).padStart(2, "0");
-  const cards = projects.map((p, i) => {
+  const grid = document.querySelector("#projects");
+  // The home page shows a selection (FEATURED in projects.js); /collection shows everything.
+  const featured = grid.hasAttribute("data-featured")
+    ? (window.FEATURED || []).map((slug) => projects.find((p) => p.slug === slug)).filter(Boolean)
+    : null;
+  const shown = featured && featured.length ? featured : projects;
+  // An old link to a card that now lives on /collection (lp.lndev.me/#kudo) still lands on it.
+  const wanted = decodeURIComponent(location.hash.slice(1));
+  if (featured && wanted && projects.some((p) => p.slug === wanted) && !shown.some((p) => p.slug === wanted)) {
+    location.replace("/collection#" + encodeURIComponent(wanted));
+    return;
+  }
+  const cards = shown.map((p) => {
+    const i = projects.indexOf(p);
     const source = p.source || repo + p.slug;
     const destination = p.url || `https://${p.slug}-lndev.vercel.app`;
     return `<article class="project reveal" id="${esc(p.slug)}" data-group="${esc(p.group)}">
@@ -27,11 +40,19 @@
       <div class="project__links"><a href="${esc(destination)}" ${ext}>Live preview <span aria-hidden="true"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a><a href="${esc(source)}" ${ext} aria-label="${esc(p.name)} source code">Source code <span aria-hidden="true"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a></div>
       <details><summary>Behind the design</summary><div class="project__details"><p>${esc(p.description)}</p><dl><div><dt>Type</dt><dd>${esc(p.type)}</dd></div><div><dt>Stack</dt><dd>${esc(p.stack.join(" · "))}</dd></div><div><dt>Palette</dt><dd class="swatches" aria-label="Color palette">${p.colors.map((c) => `<i style="--c:${esc(c)}" title="${esc(c)}"></i>`).join("")}</dd></div></dl></div></details></article>`;
   });
-  document.querySelector("#projects").innerHTML = cards.join("");
+  grid.innerHTML = cards.join("");
+  document
+    .querySelectorAll("[data-project-count]")
+    .forEach((el) => (el.textContent = String(projects.length)));
+  document
+    .querySelectorAll("[data-project-rest]")
+    .forEach((el) => (el.textContent = String(projects.length - shown.length)));
+  if (!featured && wanted && shown.some((p) => p.slug === wanted))
+    requestAnimationFrame(() => document.getElementById(wanted)?.scrollIntoView());
   // Shadcn Pages Pro (pro.js): stays hidden until PRO.live is true.
   const pro = window.PRO && window.PRO.live ? window.PRO : null;
-  if (pro) {
-    const section = document.querySelector("#pro");
+  const section = document.querySelector("#pro");
+  if (pro && section) {
     section.querySelectorAll("[data-pro-link]").forEach((a) => (a.href = pro.url));
     const price = section.querySelector("[data-pro-price]");
     price.innerHTML = `From <strong>$${esc(pro.price.launch)}</strong>${pro.price.regular > pro.price.launch ? ` <s>$${esc(pro.price.regular)}</s>` : ""} · one payment, lifetime updates`;
@@ -47,6 +68,8 @@
       )
       .join("");
     section.hidden = false;
+  }
+  if (pro) {
     document.querySelectorAll(".project").forEach((card) => {
       const target = pro.fullSites[card.id];
       if (!target) return;
@@ -74,17 +97,15 @@
         card.classList.add("is-in");
       }
     });
-    document.querySelector("#filter-status").textContent =
-      `${count} ${group === "all" ? "" : group + " "}projects`;
+    const status = document.querySelector("#filter-status");
+    if (status) status.textContent = `${count} ${group === "all" ? "" : group + " "}projects`;
   }
   filterButtons.forEach((b) =>
     b.addEventListener("click", () => filterProjects(b.dataset.filter)),
   );
   const viewButton = document.querySelector(".view-toggle");
-  viewButton.addEventListener("click", () => {
-    const index = document
-      .querySelector("#projects")
-      .classList.toggle("is-index");
+  viewButton?.addEventListener("click", () => {
+    const index = grid.classList.toggle("is-index");
     viewButton.setAttribute("aria-pressed", String(index));
     viewButton.innerHTML = index
       ? '<span aria-hidden="true">⊞</span> Gallery view'
@@ -108,6 +129,8 @@
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   let paused = false;
   const featureStage = document.querySelector(".hero__display");
+  if (featureStage) initHome();
+  function initHome() {
   const featuredCards = [...featureStage.querySelectorAll(".feature-card")].filter(
     (card, index) => {
       card.hidden = !projects[index];
@@ -123,7 +146,7 @@
   let featureHovered = false;
 
   function setFeatureProject(card, project) {
-    card.href = `#${project.slug}`;
+    card.href = `/collection#${project.slug}`;
     card.setAttribute("aria-label", `Explore ${project.name}`);
     const image = card.querySelector("img");
     image.src = project.image;
@@ -227,9 +250,6 @@
   featureStage.addEventListener("focusout", () => {
     queueMicrotask(scheduleFeature);
   });
-  featureStage.addEventListener("click", (event) => {
-    if (event.target.closest(".feature-card")) filterProjects("all");
-  });
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(
       ([entry]) => {
@@ -283,6 +303,7 @@
     document.querySelector(".ticker__track").style.animationPlayState =
       document.hidden ? "paused" : "";
   });
+  }
   const nav = document.querySelector(".nav");
   let queued = false;
   addEventListener(
@@ -314,7 +335,7 @@
   }
   const copy = document.querySelector(".copy-button");
   let copyTimer;
-  copy.addEventListener("click", async () => {
+  copy?.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(
         "git clone https://github.com/ln-dev7/landing-pages.git\ncd landing-pages\ncd landing-pages/fallow\npnpm install\npnpm dev",

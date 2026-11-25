@@ -14,3 +14,8 @@ Kudo, Mesa, Keel, Folio, Hum, Wren, Murmur, Knot, Nightshift and Tally were capt
 
 - Covers: `kudo.jpg`, `mesa.jpg`, `keel.jpg`, `folio.jpg`, `hum.jpg`, `wren.jpg`, `murmur.jpg`, `knot.jpg`, `nightshift.jpg`, `tally.jpg`, 1920 × 1080 JPEG. Each page is captured at 1600 × 900 after its intro animations, then placed in the same rounded browser frame, public URL, shadow and neutral background as the other showcases.
 - Collection checks cover all 28 cards, the three filters (10 immersive, 9 editorial, 9 playful), the featured stack and a 390 px mobile view without horizontal overflow.
+
+Vesper and Tenth were captured on November 25, 2026 from their local production builds (Node 22, Next.js 16).
+
+- Covers: `vesper.jpg`, `tenth.jpg`, 1920 × 1080 JPEG, captured at 1600 × 900 after the intro animations and placed in the same browser frame as the other showcases.
+- Collection checks cover all 30 cards, the three filters (11 immersive, 10 editorial, 9 playful), the featured stack and a 390 px mobile view without horizontal overflow.

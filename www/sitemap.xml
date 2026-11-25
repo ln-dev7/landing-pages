@@ -2,13 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://lp.lndev.me/</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <image:image><image:loc>https://lp.lndev.me/showcase/kudo.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/mesa.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/keel.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/folio.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/hum.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/wren.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/vesper.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lp.lndev.me/showcase/tenth.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/murmur.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/knot.jpg</image:loc></image:image>
     <image:image><image:loc>https://lp.lndev.me/showcase/nightshift.jpg</image:loc></image:image>
@@ -34,7 +36,7 @@
   </url>
   <url>
     <loc>https://lp.lndev.me/collection</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://lp.lndev.me/community</loc>

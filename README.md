@@ -18,6 +18,8 @@ clone, run and make your own.
 | [![Folio](www/showcase/folio.jpg)](https://folio-lndev.vercel.app) | **[Folio](landing-pages/folio)** · [Live](https://folio-lndev.vercel.app) | Docs and wikis with an assistant that read every page |
 | [![Hum](www/showcase/hum.jpg)](https://hum-lndev.vercel.app) | **[Hum](landing-pages/hum)** · [Live](https://hum-lndev.vercel.app) | Team chat with a catch-up that reads the backlog |
 | [![Wren](www/showcase/wren.jpg)](https://wren-lndev.vercel.app) | **[Wren](landing-pages/wren)** · [Live](https://wren-lndev.vercel.app) | An AI thinking partner that writes alongside you |
+| [![Vesper](www/showcase/vesper.jpg)](https://vesper-lndev.vercel.app) | **[Vesper](landing-pages/vesper)** · [Live](https://vesper-lndev.vercel.app) | A team digest that fills as the sun goes down |
+| [![Tenth](www/showcase/tenth.jpg)](https://tenth-lndev.vercel.app) | **[Tenth](landing-pages/tenth)** · [Live](https://tenth-lndev.vercel.app) | A freelancer card that sets tax aside |
 | [![Murmur](www/showcase/murmur.jpg)](https://murmur-lndev.vercel.app) | **[Murmur](landing-pages/murmur)** · [Live](https://murmur-lndev.vercel.app) | An AI receptionist that answers every call |
 | [![Knot](www/showcase/knot.jpg)](https://knot-lndev.vercel.app) | **[Knot](landing-pages/knot)** · [Live](https://knot-lndev.vercel.app) | Automations built from one sentence |
 | [![Nightshift](www/showcase/nightshift.jpg)](https://nightshift-lndev.vercel.app) | **[Nightshift](landing-pages/nightshift)** · [Live](https://nightshift-lndev.vercel.app) | An AI on-call engineer in a CRT terminal |

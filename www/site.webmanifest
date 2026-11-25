@@ -1,7 +1,7 @@
 {
   "name": "Shadcn Pages Free",
   "short_name": "Shadcn Pages",
-  "description": "Shadcn Pages Free: 28 open-source shadcn/ui landing page templates with a personality. Built with Next.js, Tailwind CSS and fully customized shadcn/ui.",
+  "description": "Shadcn Pages Free: 30 open-source shadcn/ui landing page templates with a personality. Built with Next.js, Tailwind CSS and fully customized shadcn/ui.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f7f6f2",

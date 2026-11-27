@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lp.lndev.me/sitemap.xml
+Sitemap: https://free.shadcnpages.dev/sitemap.xml

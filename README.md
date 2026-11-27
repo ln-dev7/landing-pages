@@ -3,7 +3,7 @@
 Open-source **shadcn/ui landing page templates** with a personality of their own.
 Built with Next.js, Tailwind CSS and fully customized shadcn/ui. Free to use, MIT licensed.
 
-**[Explore the collection →](https://lp.lndev.me)**
+**[Explore the collection →](https://free.shadcnpages.dev)**
 
 Shadcn Pages Free is the open-source side of **Shadcn Pages**: every template is a complete Next.js project you can
 clone, run and make your own.
@@ -86,7 +86,7 @@ Each project’s `vercel.json` skips builds when its folder is unchanged since i
 ## Contribute
 
 Made a landing page you want to share? Community pages live in `community/<slug>` and are listed on
-[lp.lndev.me/community](https://lp.lndev.me/community) with their author. **One landing page per pull request.**
+[free.shadcnpages.dev/community](https://free.shadcnpages.dev/community) with their author. **One landing page per pull request.**
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening one.
 
 Publishing a merged community page (maintainer):

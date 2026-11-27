@@ -1,7 +1,7 @@
 # Contributing a landing page
 
 Shadcn Pages Free has a **Community** section: landing pages made by other people, listed on
-[lp.lndev.me](https://lp.lndev.me) with your name and a link to your GitHub profile. This guide explains how to send
+[free.shadcnpages.dev](https://free.shadcnpages.dev) with your name and a link to your GitHub profile. This guide explains how to send
 yours and what gets it accepted.
 
 ## The rule: one landing page per pull request
@@ -95,7 +95,7 @@ Before opening the pull request, check that:
 
 The maintainer runs the page, may ask for changes, and accepts or declines it. Declining a page says nothing about
 you: it can be a licence doubt, a page too close to an existing one or to another site, or simply not the right fit.
-Once merged, the page is deployed and listed in the Community section of [lp.lndev.me](https://lp.lndev.me) with
+Once merged, the page is deployed and listed in the Community section of [free.shadcnpages.dev](https://free.shadcnpages.dev) with
 your name and GitHub profile.
 
 By contributing, you agree that your code is published under the repository's [MIT licence](LICENSE). Third-party
